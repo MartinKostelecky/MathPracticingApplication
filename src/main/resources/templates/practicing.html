@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procvičování matematiky</title>
+    <style>
+        /* Set background colors */
+        body {
+            background-color: #d1aaff; /* Pastel purple */
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #ffc0cb; /* Pastel pink */
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 24px;
+            margin-bottom: 20px;
+
+        }
+    </style>
+</head>
+<body>
+<div class="col-lg-10 col-md-6 col-sm-6 justify-content-center">
+    <div class="title text-center">
+        <h1>Procvičování matematiky</h1>
+    </div>
+    <div class="container">
+        <h2>Příklad:</h2>
+        <p th:text="${example.get().getExampleTitle()}"></p>
+
+        <form th:action="@{/practicing}" method="post">
+            <div class="form-group">
+                <input type="hidden" th:field="*{example.id}"/>
+                <input type="text" class="form-control" placeholder="VÍŠ KOLIK TO JE? :)" id="answer" name="answer"
+                       th:field="*{example.answer}" required/>
+            </div>
+            <button type="submit">ZKONTROLOVAT</button>
+        </form>
+
+        <!-- Display success message -->
+        <div th:if="${successMessage}" class="alert alert-success">
+            <p th:text="${successMessage}"></p>
+        </div>
+
+        <!-- Display failure message -->
+        <div th:if="${failureMessage}" class="alert alert-danger">
+            <p th:text="${failureMessage}"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Practicing App - Admin Section</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="text-center">
+            <h1>Math Practicing App - Admin Section</h1>
+        </div>
+        <div class="col-md-6">
+            <h2 class="mb-4">Add an Example</h2>
+            <form th:action="@{/examples}" th:object="${example}" method="post">
+                <div class="form-group">
+                    <label for="exampleTitle">Title</label>
+                    <input type="text" class="form-control" id="exampleTitle" name="exampleTitle"
+                           th:field="*{exampleTitle}" required>
+                </div>
+                <div class="form-group">
+                    <label for="rightAnswer">Right Answer</label>
+                    <input type="text" class="form-control" id="rightAnswer" name="rightAnswer"
+                           th:field="*{rightAnswer}" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Example</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

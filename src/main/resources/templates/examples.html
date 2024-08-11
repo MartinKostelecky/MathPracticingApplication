@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Math Practicing App - Admin Section - Questions</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+<div class="container mt-4">
+    <h1 class="text-center">Math Practicing App - Admin Section - Questions</h1>
+
+    <a class="btn btn-primary btn-sm mb-3" th:href="@{/add}">Add example</a>
+
+    <table class="table table-bordered table-responsive">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Example title</th>
+            <th scope="col">Right answer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="example: ${examples}">
+
+            <td th:text="${example.id}"></td>
+            <td th:text="${example.exampleTitle}"></td>
+            <td th:text="${example.rightAnswer}"></td>
+
+            <td>
+                <a class="btn btn-warning"> <!-- TODO th:href="@{/example/edit/{id} (id=${example.id})}"-->Edit</a>
+                <a class="btn btn-danger" th:href="@{/examples/{id} (id=${example.id})}">Delete</a>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>
