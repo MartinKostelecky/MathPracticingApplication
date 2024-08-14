@@ -10,8 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">
 
     <style>
+
         body {
-            background-color: #d1aaff; /* Pastel purple */
+            background-image: url("/img/catbackground.jpg");
+            /*background-color: #d1aaff; /* Pastel purple */
             margin: 0;
             display: flex;
             justify-content: center;
@@ -53,7 +55,7 @@
         }
 
         button {
-            background-color: #d1aaff;
+            background-color: #ffc0cb; /* Pastel pink */
             font-family: 'Honk', sans-serif;
             font-size: 48px;
             color: white;
@@ -66,11 +68,17 @@
         }
 
         button:hover {
-            filter: invert(100%);
+            background: linear-gradient(
+                    45deg,
+                    #FF0000, #FF7300, #FFFB00, #48FF00,
+                    #00FFD5, #002BFF, #FF00C8, #FF0000
+            );
+            transition: linear 1s;
         }
 
     </style>
 </head>
+
 <body>
 <div class="col-lg-10 col-md-6 col-sm-6 justify-content-center">
     <div class="title text-center">
