@@ -7,9 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -17,20 +15,31 @@ import java.util.Random;
 public class PracticingServiceImpl implements PracticingService {
 
     Random random = new Random();
-
     private final ExampleRepository exampleRepository;
+    private final Map<String, Long> cache = new HashMap<>();
 
     @Override
     public Optional<Example> getRandomExample() {
 
-        //TODO Optional
         List<Example> examples = exampleRepository.findAll();
+        if (examples.isEmpty()) {
+            return Optional.empty();
+        }
 
         Long id = random.nextLong(1, examples.size() + 1);
+
+        // Check if the ID is already in the cache
+        if (cache.containsKey("lastUsedId") && cache.get("lastUsedId").equals(id)) {
+            id = random.nextLong(1, examples.size() + 1);
+        }
+
+        // Store the current ID in the cache
+        cache.put("lastUsedId", id);
         log.info("Random example id: {}", id);
 
         return exampleRepository.findById(id);
     }
+
 
     @Override
     public Boolean getResult(Example example) {
@@ -40,6 +49,7 @@ public class PracticingServiceImpl implements PracticingService {
             example.setIsCorrect(example.getAnswer().equals(exampleToCompare.getRightAnswer()));
 
             log.info("User answer {} for example {} was: {}", example.getAnswer(), exampleToCompare.getExampleTitle(), example.getIsCorrect());
+
         }
         return example.getIsCorrect();
     }

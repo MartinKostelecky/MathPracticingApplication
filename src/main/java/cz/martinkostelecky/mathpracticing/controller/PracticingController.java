@@ -37,6 +37,7 @@ public class PracticingController {
         } else {
             redirectAttributes.addFlashAttribute("failureMessage", "ZKUS TO ZNOVU! :(");
         }
+
         return "redirect:/practicing";
     }
 
