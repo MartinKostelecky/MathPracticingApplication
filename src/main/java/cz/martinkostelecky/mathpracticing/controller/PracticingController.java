@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.util.Optional;
 
 @Controller
@@ -30,12 +33,17 @@ public class PracticingController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String returnResult(@ModelAttribute Example example, RedirectAttributes redirectAttributes) {
+    public String returnResult(@ModelAttribute Example example, RedirectAttributes redirectAttributes) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         Boolean result = practicingService.getResult(example);
+
         if (result) {
             redirectAttributes.addFlashAttribute("successMessage", "JUPÍ, SPRÁVNĚ! :)");
+            practicingService.playSound(true);
+
         } else {
             redirectAttributes.addFlashAttribute("failureMessage", "ZKUS TO ZNOVU! :(");
+            practicingService.playSound(false);
+
         }
 
         return "redirect:/practicing";

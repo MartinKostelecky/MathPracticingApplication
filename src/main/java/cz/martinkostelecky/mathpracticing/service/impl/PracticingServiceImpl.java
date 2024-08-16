@@ -7,6 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.sound.sampled.*;
+import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 
 @Slf4j
@@ -52,5 +55,25 @@ public class PracticingServiceImpl implements PracticingService {
 
         }
         return example.getIsCorrect();
+    }
+
+    @Override
+    public void playSound(Boolean result) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+
+        Clip clip = AudioSystem.getClip();
+
+        if (result) {
+            URL successSoundUrl = getClass().getResource("/audio/success.wav");
+            assert successSoundUrl != null;
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(successSoundUrl);
+            clip.open(audioIn);
+
+        } else {
+            URL failureSoundUrl = getClass().getResource("/audio/failure.wav");
+            assert failureSoundUrl != null;
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(failureSoundUrl);
+            clip.open(audioIn);
+        }
+        clip.start();
     }
 }
