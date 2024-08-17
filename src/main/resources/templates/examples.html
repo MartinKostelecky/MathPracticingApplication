@@ -29,7 +29,7 @@
             <td th:text="${example.rightAnswer}"></td>
 
             <td>
-                <a class="btn btn-warning"> <!-- TODO th:href="@{/example/edit/{id} (id=${example.id})}"-->Edit</a>
+                <a class="btn btn-warning" th:href="@{/examples/edit/{id} (id=${example.id})}">Edit</a>
                 <a class="btn btn-danger" th:href="@{/examples/{id} (id=${example.id})}">Delete</a>
             </td>
 
