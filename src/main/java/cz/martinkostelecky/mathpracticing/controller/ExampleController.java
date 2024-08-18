@@ -1,6 +1,8 @@
 package cz.martinkostelecky.mathpracticing.controller;
 
 import cz.martinkostelecky.mathpracticing.entity.Example;
+import cz.martinkostelecky.mathpracticing.exception.ExampleAlreadyExistException;
+import cz.martinkostelecky.mathpracticing.exception.ExampleNotFoundException;
 import cz.martinkostelecky.mathpracticing.service.ExampleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +41,7 @@ public class ExampleController {
     }
 
     @RequestMapping(value ="/examples", method = RequestMethod.POST)
-    public String addExample(@ModelAttribute("example") Example example) {
+    public String addExample(@ModelAttribute("example") Example example) throws ExampleAlreadyExistException {
 
         exampleService.saveExample(example);
         log.info("Added example: {}", example);
@@ -47,17 +49,17 @@ public class ExampleController {
     }
 
     @RequestMapping(value = "/examples/edit/{id}", method = GET)
-    public String renderEditExample(@PathVariable Long id, Model model) {
+    public String renderEditExample(@PathVariable Long id, Model model) throws ExampleNotFoundException {
         model.addAttribute("example", exampleService.getExampleById(id));
         return "edit_example";
     }
 
 
     @RequestMapping(value = "/examples/{id}", method = POST)
-    public String updateExample(@PathVariable Long id, @ModelAttribute("example") Example example) {
+    public String updateExample(@PathVariable Long id, @ModelAttribute("example") Example example) throws ExampleNotFoundException, ExampleAlreadyExistException {
 
         example.setId(id);
-        exampleService.updateInsuredPerson(example);
+        exampleService.updateExample(example);
 
         return "redirect:/examples";
     }

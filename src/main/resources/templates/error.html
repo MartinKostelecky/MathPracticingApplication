@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Practicing App - Admin Section - Error Page</title>
+</head>
+<body>
+<h1>Something went wrong...</h1>
+<p>Status code: <span th:text="${status}"></span></p>
+<p>Error message: <span th:text="${message}"></span></p>
+<button>
+    <a th:href="@{/examples}" class="nav-link">Back to examples</a>
+</button>
+</body>
+</html>
