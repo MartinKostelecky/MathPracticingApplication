@@ -6,7 +6,7 @@ First goal: when finished, the application in MVC architecture will provide rand
 User get corresponding (correct/incorrect) message after sending an answer. 
 Questions will be stored in database and there will be possibility to add, update or delete questions in admin section of the app.
 
-Second goal: change the architecture to microservices.
+Second goal: change the architecture to microservices. Link to microservices version: https://github.com/MartinKostelecky/mathpracticing-microservices
 
 Used technologies: Java, Spring, PostgreSQL, Thymeleaf, Bootstrap, HTML
 
