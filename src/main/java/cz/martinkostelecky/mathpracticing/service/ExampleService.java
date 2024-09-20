@@ -14,7 +14,7 @@ public interface ExampleService {
 
     Example getExampleById(long id) throws ExampleNotFoundException;
 
-    Example updateExample(Example example) throws ExampleNotFoundException, ExampleAlreadyExistException;
+    void updateExample(Example example) throws ExampleNotFoundException, ExampleAlreadyExistException;
 
     void deleteExampleById(Long id);
 }

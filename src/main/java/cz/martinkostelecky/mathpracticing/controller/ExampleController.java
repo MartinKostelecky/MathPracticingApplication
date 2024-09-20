@@ -32,7 +32,7 @@ public class ExampleController {
 
 
     @RequestMapping(value = "/add", method = GET)
-    public String addQuestionForm(Model model) {
+    public String addExampleForm(Model model) {
 
         Example example = new Example();
         model.addAttribute("example", example);

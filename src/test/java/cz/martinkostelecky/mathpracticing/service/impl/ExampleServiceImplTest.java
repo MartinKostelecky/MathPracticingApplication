@@ -103,13 +103,15 @@ class ExampleServiceImplTest {
                         "4".equals(example.getRightAnswer())
         ))).thenAnswer(invocation -> invocation.getArgument(0));
 
+        exampleServiceImplTest.updateExample(toUpdateExample);
 
-        Example updatedExample = exampleServiceImplTest.updateExample(toUpdateExample);
+        // Verify that the save method was called with the correct arguments
+        verify(exampleRepository, times(1)).save(argThat(example ->
+                "2+2".equals(example.getExampleTitle()) &&
+                        "4".equals(example.getRightAnswer())
+        ));
 
-
-        verify(exampleRepository).save(eq(updatedExample));
-
-        assertEquals(toUpdateExample.getId(), updatedExample.getId());
+        Example updatedExample = exampleRepository.findById(1L).get();
         assertEquals(toUpdateExample.getExampleTitle(), updatedExample.getExampleTitle());
         assertEquals(toUpdateExample.getRightAnswer(), updatedExample.getRightAnswer());
     }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ExampleRepository extends JpaRepository<Example, Long> {
 
-    @Query(value = "" + "SELECT CASE WHEN COUNT(e) > 0 THEN " +
+    @Query(value = "SELECT CASE WHEN COUNT(e) > 0 THEN " +
             "TRUE ELSE FALSE END " +
             "FROM Example e " +
             "WHERE e.exampleTitle = ?1")

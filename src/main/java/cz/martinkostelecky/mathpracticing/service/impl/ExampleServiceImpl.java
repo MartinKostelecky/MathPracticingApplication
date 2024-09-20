@@ -6,6 +6,7 @@ import cz.martinkostelecky.mathpracticing.exception.ExampleNotFoundException;
 import cz.martinkostelecky.mathpracticing.repository.ExampleRepository;
 import cz.martinkostelecky.mathpracticing.service.ExampleService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ExampleServiceImpl implements ExampleService {
 
     private final ExampleRepository exampleRepository;
@@ -39,7 +41,7 @@ public class ExampleServiceImpl implements ExampleService {
     }
 
     @Override
-    public Example updateExample(Example example) throws ExampleNotFoundException, ExampleAlreadyExistException {
+    public void updateExample(Example example) throws ExampleNotFoundException, ExampleAlreadyExistException {
 
         Optional<Example> optionalExistingExample = exampleRepository.findById(example.getId());
         Boolean existByExampleTitle = exampleRepository.existByExampleTitle(example.getExampleTitle());
@@ -54,7 +56,8 @@ public class ExampleServiceImpl implements ExampleService {
                 existingExample.setExampleTitle(example.getExampleTitle());
             }
             existingExample.setRightAnswer(example.getRightAnswer());
-            return exampleRepository.save(existingExample);
+            exampleRepository.save(existingExample);
+            log.info("Example id: " + example.getId() + " updated.");
         } else {
             throw new ExampleNotFoundException("Example not found!");
         }
@@ -64,6 +67,6 @@ public class ExampleServiceImpl implements ExampleService {
     public void deleteExampleById(Long id) {
 
         exampleRepository.deleteById(id);
-
+        log.info("Example id: " + id + " deleted.");
     }
 }
