@@ -1,0 +1,70 @@
+*,
+*::before,
+::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("/img/catbackground.jpg");
+    /*background-color: #d1aaff; /* Pastel purple */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #ffc0cb; /* Pastel pink */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.font {
+    font-family: 'Honk', sans-serif;
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.font-smaller {
+    font-family: 'Honk', sans-serif;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.font-mistake {
+    font-family: 'Honk', sans-serif;
+    font-size: 60px;
+    margin-bottom: 20px;
+    filter: grayscale(100%);
+}
+
+input[type="text"] {
+    width: 100%;
+    height: 60px;
+    font-size: 24px;
+    padding: 10px;
+}
+
+button {
+    background-color: #ffc0cb; /* Pastel pink */
+    font-family: 'Honk', sans-serif;
+    font-size: 60px;
+    color: white;
+    border: none;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(
+            45deg,
+            #FF0000, #FF7300, #FFFB00, #48FF00,
+            #00FFD5, #002BFF, #FF00C8, #FF0000
+    );
+    transition: linear 1s;
+}

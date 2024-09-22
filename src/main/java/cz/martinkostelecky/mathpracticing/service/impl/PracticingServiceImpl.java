@@ -22,18 +22,20 @@ public class PracticingServiceImpl implements PracticingService {
     private final Map<String, Long> cache = new HashMap<>();
 
     @Override
-    public Optional<Example> getRandomExample() {
+    public Optional<Example> getRandomExample(Example example) {
 
-        List<Example> examples = exampleRepository.findAll();
+        List<Example> examples = exampleRepository.findByCategory(example.getCategory());
         if (examples.isEmpty()) {
             return Optional.empty();
         }
 
-        Long id = random.nextLong(1, examples.size() + 1);
+        List<Long> ids = examples.stream().map(Example::getId).toList();
+
+        Long id = ids.get((int) random.nextLong(ids.size()));
 
         // Check if the ID is already in the cache
         if (cache.containsKey("lastUsedId") && cache.get("lastUsedId").equals(id)) {
-            id = random.nextLong(1, examples.size() + 1);
+            id = ids.get((int) random.nextLong(ids.size()));
         }
 
         // Store the current ID in the cache

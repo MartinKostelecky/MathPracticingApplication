@@ -22,7 +22,7 @@ public class Example {
 
     private String answer;
 
-    //private String category;
+    private String category;
 
     private String rightAnswer;
 

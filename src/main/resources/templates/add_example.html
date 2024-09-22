@@ -21,6 +21,13 @@
                            th:field="*{exampleTitle}" required>
                 </div>
                 <div class="form-group">
+                    <label for="category">Category</label>
+                    <select th:field="*{category}" class="form-control" id="category">
+                        <option value="Sčítání">Sčítání</option>
+                        <option value="Odčítání">Odčítání</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="rightAnswer">Right Answer</label>
                     <input type="text" class="form-control" id="rightAnswer" name="rightAnswer"
                            th:field="*{rightAnswer}" required>

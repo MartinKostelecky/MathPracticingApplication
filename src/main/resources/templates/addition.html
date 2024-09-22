@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procvičování matematiky - sčítání +</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+
+</head>
+
+<body>
+<div class="col-lg-10 col-md-6 col-sm-6 justify-content-center">
+    <div class="text-center">
+        <h1 class="font">Procvičování matematiky - sčítání +</h1>
+    </div>
+
+    <div class="container">
+        <h2 class="font">Příklad:</h2>
+        <p th:text="${example.get().getExampleTitle()}" class="font"></p>
+
+        <form th:action="@{/practicing/result}" method="post">
+            <div class="form-group">
+                <input type="hidden" th:field="*{example.id}"/>
+                <input type="hidden" th:field="*{example.category}"/>
+                <input type="text" class="form-control" placeholder="VÍŠ KOLIK TO JE? :)" id="answer" name="answer"
+                       th:field="*{example.answer}" required/>
+            </div>
+            <button type="submit">ZKONTROLOVAT</button>
+        </form>
+
+        <div th:if="${successMessage}" class="font alert alert-success">
+            <p th:text="${successMessage}"></p>
+        </div>
+
+        <div th:if="${failureMessage}" class="font-mistake font alert alert-danger">
+            <p th:text="${failureMessage}"></p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

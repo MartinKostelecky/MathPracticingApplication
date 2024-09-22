@@ -8,70 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
 
-    <style>
-
-        body {
-            background-image: url("/img/catbackground.jpg");
-            /*background-color: #d1aaff; /* Pastel purple */
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            background-color: #ffc0cb; /* Pastel pink */
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .font {
-            font-family: 'Honk', sans-serif;
-            font-size: 60px;
-            margin-bottom: 20px;
-        }
-
-        .font-mistake {
-            font-family: 'Honk', sans-serif;
-            font-size: 60px;
-            margin-bottom: 20px;
-            filter: grayscale(100%);
-        }
-
-        input[type="text"] {
-            width: 100%;
-            height: 60px;
-            font-size: 24px;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-
-        button {
-            background-color: #ffc0cb; /* Pastel pink */
-            font-family: 'Honk', sans-serif;
-            font-size: 60px;
-            color: white;
-            border: none;
-            margin-top: 20px;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        button:hover {
-            background: linear-gradient(
-                    45deg,
-                    #FF0000, #FF7300, #FFFB00, #48FF00,
-                    #00FFD5, #002BFF, #FF00C8, #FF0000
-            );
-            transition: linear 1s;
-        }
-
-    </style>
 </head>
 
 <body>
@@ -79,28 +17,17 @@
     <div class="text-center">
         <h1 class="font">Procvičování matematiky</h1>
     </div>
+
     <div class="container">
-        <h2 class="font">Příklad:</h2>
-        <p th:text="${example.get().getExampleTitle()}" class="font"></p>
-
-        <form th:action="@{/practicing}" method="post">
-            <div class="form-group">
-                <input type="hidden" th:field="*{example.id}"/>
-                <input type="text" class="form-control" placeholder="VÍŠ KOLIK TO JE? :)" id="answer" name="answer"
-                       th:field="*{example.answer}" required/>
-            </div>
-            <button type="submit">ZKONTROLOVAT</button>
+        <h2 class="font-smaller">Vyber co chceš procvičovat</h2>
+        <form th:action="@{/practicing/addition}" method="post">
+            <button type="submit">Sčítání +</button>
         </form>
-
-        <div th:if="${successMessage}" class="font alert alert-success">
-            <p th:text="${successMessage}"></p>
-        </div>
-
-        <div th:if="${failureMessage}" class="font-mistake font alert alert-danger">
-            <p th:text="${failureMessage}"></p>
-        </div>
+        <br>
+        <form th:action="@{/practicing/subtraction}" method="post">
+            <button type="submit">Odečítání -</button>
+        </form>
     </div>
 </div>
-
 </body>
 </html>

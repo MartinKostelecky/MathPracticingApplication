@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface PracticingService {
 
-    Optional<Example> getRandomExample();
+    Optional<Example> getRandomExample(Example example);
 
     Boolean getResult(Example example);
 

@@ -14,17 +14,23 @@
         </div>
         <div class="col-md-6">
             <h2 class="mb-4">Edit example</h2>
-            <form th:action="@{/examples/{id} (id=${example.id})}"
-                   method="post">
+            <form th:action="@{/examples/{id} (id=${example.id})}" th:object="${example}" method="post">
                 <div class="form-group">
                     <label for="exampleTitle">Title</label>
                     <input type="text" class="form-control" id="exampleTitle" name="exampleTitle"
-                           th:field="*{example.exampleTitle}" required>
+                           th:field="*{exampleTitle}" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select th:field="*{category}" class="form-control" id="category">
+                        <option value="Sčítání">Sčítání</option>
+                        <option value="Odčítání">Odčítání</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="rightAnswer">Right Answer</label>
                     <input type="text" class="form-control" id="rightAnswer" name="rightAnswer"
-                           th:field="*{example.rightAnswer}" required>
+                           th:field="*{rightAnswer}" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Save edited example</button>
             </form>
