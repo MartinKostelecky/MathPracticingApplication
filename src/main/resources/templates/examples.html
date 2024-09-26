@@ -11,7 +11,12 @@
 <div class="container mt-4">
     <h1 class="text-center">Math Practicing App - Admin Section - Examples</h1>
 
-    <a class="btn btn-primary btn-sm mb-3" th:href="@{/add}">Add example</a>
+    <div class="d-flex justify-content-between mb-3">
+        <a class="btn btn-primary btn-sm" th:href="@{/add}">Add example</a>
+        <form th:action="@{/logout}" method="post" class="mb-0">
+            <button type="submit" class="btn btn-secondary btn-sm">Logout</button>
+        </form>
+    </div>
 
     <table class="table table-bordered table-responsive">
         <thead>
