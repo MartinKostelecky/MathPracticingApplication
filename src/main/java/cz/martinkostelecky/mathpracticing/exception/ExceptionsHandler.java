@@ -18,7 +18,7 @@ public class ExceptionsHandler {
     }
 
     @ExceptionHandler(value = ExampleNotFoundException.class)
-    public String handleInsuredPersonNotFoundException(ExampleNotFoundException e, Model model) {
+    public String handleExampleNotFoundException(ExampleNotFoundException e, Model model) {
 
         model.addAttribute("status", HttpStatus.NOT_FOUND);
         model.addAttribute("message", e.getMessage());

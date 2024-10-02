@@ -35,7 +35,8 @@ public class SecurityConfig {
                 .exceptionHandling(httpSecurityExceptionHandlingConfigurer ->
                         httpSecurityExceptionHandlingConfigurer.authenticationEntryPoint(unauthorizedHandler))
                 .authorizeHttpRequests(authorize ->
-                        authorize.requestMatchers("/login", "/authenticate", "/practicing")
+                        authorize.requestMatchers("/login", "/authenticate", "/practicing", "/practicing/addition",
+                                        "/practicing/result", "/practicing/subtraction", "/css/**", "/img/**")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated())

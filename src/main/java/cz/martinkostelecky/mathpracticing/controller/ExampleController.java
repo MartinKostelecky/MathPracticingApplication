@@ -5,7 +5,6 @@ import cz.martinkostelecky.mathpracticing.exception.ExampleAlreadyExistException
 import cz.martinkostelecky.mathpracticing.exception.ExampleNotFoundException;
 import cz.martinkostelecky.mathpracticing.service.ExampleService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,10 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-@Slf4j
 @Controller
 @RequiredArgsConstructor
-//@RequestMapping(value = "math_practicing/admin")
 public class ExampleController {
 
     private final ExampleService exampleService;
@@ -44,7 +41,7 @@ public class ExampleController {
     public String addExample(@ModelAttribute("example") Example example) throws ExampleAlreadyExistException {
 
         exampleService.saveExample(example);
-        log.info("Added example: {}", example);
+
         return "redirect:/examples";
     }
 
@@ -56,7 +53,8 @@ public class ExampleController {
 
 
     @RequestMapping(value = "/examples/{id}", method = POST)
-    public String updateExample(@PathVariable Long id, @ModelAttribute("example") Example example) throws ExampleNotFoundException, ExampleAlreadyExistException {
+    public String updateExample(@PathVariable Long id, @ModelAttribute("example") Example example)
+            throws ExampleNotFoundException, ExampleAlreadyExistException {
 
         example.setId(id);
         exampleService.updateExample(example);

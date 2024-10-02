@@ -30,6 +30,7 @@ public class ExampleServiceImpl implements ExampleService {
             throw new ExampleAlreadyExistException("Example " + example.getExampleTitle() + " already exist in database.");
         }
         exampleRepository.save(example);
+        log.info("Added example: {}", example);
     }
 
     @Override
@@ -47,17 +48,9 @@ public class ExampleServiceImpl implements ExampleService {
         Boolean existByExampleTitle = exampleRepository.existByExampleTitle(example.getExampleTitle());
 
         if (optionalExistingExample.isPresent()) {
-            Example existingExample = optionalExistingExample.get();
-            existingExample.setId(example.getId());
-
-            if (!existingExample.getExampleTitle().equals(example.getExampleTitle()) && existByExampleTitle) {
-                throw new ExampleAlreadyExistException("Example " + example.getExampleTitle() + " already exist in database.");
-            } else {
-                existingExample.setExampleTitle(example.getExampleTitle());
-            }
-            existingExample.setRightAnswer(example.getRightAnswer());
+            Example existingExample = getExample(example, optionalExistingExample, existByExampleTitle);
             exampleRepository.save(existingExample);
-            log.info("Example id: " + example.getId() + " updated.");
+            log.info("Example id: {} updated.", example.getId());
         } else {
             throw new ExampleNotFoundException("Example not found!");
         }
@@ -67,6 +60,30 @@ public class ExampleServiceImpl implements ExampleService {
     public void deleteExampleById(Long id) {
 
         exampleRepository.deleteById(id);
-        log.info("Example id: " + id + " deleted.");
+        log.info("Example id: {} deleted.", id);
     }
+
+    private static Example getExample(Example example, Optional<Example> optionalExistingExample, Boolean existByExampleTitle)
+            throws ExampleNotFoundException, ExampleAlreadyExistException {
+
+        Example existingExample;
+
+        if(optionalExistingExample.isPresent()) {
+            existingExample = optionalExistingExample.get();
+        } else {
+            throw new ExampleNotFoundException("Example not found!");
+        }
+
+        existingExample.setId(example.getId());
+
+        if (!existingExample.getExampleTitle().equals(example.getExampleTitle()) && existByExampleTitle) {
+            throw new ExampleAlreadyExistException("Example " + example.getExampleTitle() + " already exist in database.");
+        } else {
+            existingExample.setExampleTitle(example.getExampleTitle());
+        }
+        existingExample.setRightAnswer(example.getRightAnswer());
+
+        return existingExample;
+    }
+
 }

@@ -77,7 +77,7 @@ class ExampleServiceImplTest {
     @Test
     void canGetExampleById() throws ExampleNotFoundException {
 
-        Long id = 1L;
+        long id = 1L;
 
         when(exampleRepository.findById(id)).thenReturn(Optional.of(getTestExample()));
 

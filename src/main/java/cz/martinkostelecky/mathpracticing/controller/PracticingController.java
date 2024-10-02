@@ -40,7 +40,7 @@ public class PracticingController {
 
     @RequestMapping(value = "/addition", method = RequestMethod.GET)
     public String getAdditionPracticing(Model model) {
-        //TODO get category already from template via Thymeleaf
+
         Example example = new Example();
 
         example.setCategory("Sčítání");
@@ -54,7 +54,7 @@ public class PracticingController {
 
     @RequestMapping(value = "/subtraction", method = RequestMethod.GET)
     public String getSubtractionPracticing(Model model) {
-        //TODO get category already from template via Thymeleaf
+
         Example example = new Example();
         example.setCategory("Odčítání");
 

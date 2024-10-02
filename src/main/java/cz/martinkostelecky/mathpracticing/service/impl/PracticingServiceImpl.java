@@ -35,6 +35,7 @@ public class PracticingServiceImpl implements PracticingService {
 
         // Check if the ID is already in the cache
         if (cache.containsKey("lastUsedId") && cache.get("lastUsedId").equals(id)) {
+            //if yes, new id is selected
             id = ids.get((int) random.nextLong(ids.size()));
         }
 
@@ -53,7 +54,8 @@ public class PracticingServiceImpl implements PracticingService {
             Example exampleToCompare = exampleRepository.findById(example.getId()).get();
             example.setIsCorrect(example.getAnswer().equals(exampleToCompare.getRightAnswer()));
 
-            log.info("User answer {} for example {} was: {}", example.getAnswer(), exampleToCompare.getExampleTitle(), example.getIsCorrect());
+            log.info("User answer {} for example {} was: {}",
+                    example.getAnswer(), exampleToCompare.getExampleTitle(), example.getIsCorrect());
 
         }
         return example.getIsCorrect();

@@ -40,6 +40,11 @@ body {
     filter: grayscale(100%);
 }
 
+label {
+    font-family: 'Honk', sans-serif;
+    font-size: 40px;
+}
+
 input[type="text"] {
     width: 100%;
     height: 60px;
