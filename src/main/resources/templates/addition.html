@@ -22,7 +22,7 @@
         <h2 class="font">Příklad:</h2>
         <p th:text="${example.get().getExampleTitle()}" class="font"></p>
 
-        <form th:action="@{/practicing/result}" method="post">
+        <form th:action="@{/result}" method="post">
             <div class="form-group">
                 <input type="hidden" th:field="*{example.id}"/>
                 <input type="hidden" th:field="*{example.category}"/>

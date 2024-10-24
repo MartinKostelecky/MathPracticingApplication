@@ -65,19 +65,22 @@ public class PracticingServiceImpl implements PracticingService {
     public void playSound(Boolean result) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 
         Clip clip = AudioSystem.getClip();
+        AudioInputStream audioIn = null;
+        try {
+            URL soundUrl = result ? getClass().getResource("/audio/success.wav")
+                    : getClass().getResource("/audio/failure.wav");
+            if (soundUrl == null) throw new IllegalArgumentException("Audio file not found");
 
-        if (result) {
-            URL successSoundUrl = getClass().getResource("/audio/success.wav");
-            assert successSoundUrl != null;
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(successSoundUrl);
-            clip.open(audioIn);
+            audioIn = AudioSystem.getAudioInputStream(soundUrl);
 
-        } else {
-            URL failureSoundUrl = getClass().getResource("/audio/failure.wav");
-            assert failureSoundUrl != null;
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(failureSoundUrl);
             clip.open(audioIn);
+            clip.start();
+
+        } finally {
+            if (audioIn != null) {
+                audioIn.close();
+            }
+            clip.close();
         }
-        clip.start();
     }
 }

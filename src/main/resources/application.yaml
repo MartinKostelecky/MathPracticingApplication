@@ -1,4 +1,11 @@
 spring:
+  #  datasource:
+  #    url: jdbc:postgresql://db:5433/mathexamplesdb
+  #    username: mathpostgresqldb
+  #    password: ${POSTGRES_PASSWORD}
+  #    driverClassName: org.postgresql.Driver
+
+
   datasource:
     url: jdbc:postgresql://localhost:5433/mathexamplesdb
     username: postgres

@@ -1,0 +1,44 @@
+Manifest-Version: 1.0
+Main-Class: cz.martinkostelecky.mathpracticing.MathPracticingApplication
+Class-Path: jaxb-runtime-4.0.5.jar spring-boot-starter-json-3.3.3.jar lo
+ g4j-api-2.23.1.jar assertj-core-3.25.3.jar awaitility-4.2.2.jar hiberna
+ te-commons-annotations-6.0.6.Final.jar hamcrest-2.2.jar tomcat-embed-co
+ re-10.1.28.jar spring-boot-starter-security-3.3.3.jar asm-9.6.jar mocki
+ to-junit-jupiter-5.11.0.jar micrometer-observation-1.13.3.jar spring-bo
+ ot-starter-logging-3.3.3.jar junit-jupiter-engine-5.10.3.jar spring-web
+ mvc-6.1.12.jar apiguardian-api-1.1.2.jar unbescape-1.1.6.RELEASE.jar sp
+ ring-boot-starter-web-3.3.3.jar jaxb-core-4.0.5.jar spring-boot-devtool
+ s-3.3.3.jar jul-to-slf4j-2.0.16.jar opentest4j-1.3.0.jar slf4j-api-2.0.
+ 16.jar json-path-2.9.0.jar spring-expression-6.1.12.jar spring-data-jpa
+ -3.3.3.jar thymeleaf-spring6-3.1.2.RELEASE.jar lombok-1.18.34.jar class
+ mate-1.7.0.jar txw2-4.0.5.jar jboss-logging-3.5.3.Final.jar spring-boot
+ -test-3.3.3.jar micrometer-commons-1.13.3.jar jandex-3.1.2.jar jackson-
+ datatype-jsr310-2.17.2.jar spring-jdbc-6.1.12.jar h2-2.2.224.jar spring
+ -orm-6.1.12.jar jackson-databind-2.17.2.jar spring-tx-6.1.12.jar spring
+ -aspects-6.1.12.jar tomcat-embed-websocket-10.1.28.jar spring-boot-test
+ -autoconfigure-3.3.3.jar jakarta.persistence-api-3.1.0.jar spring-boot-
+ starter-aop-3.3.3.jar attoparser-2.0.7.RELEASE.jar spring-security-cryp
+ to-6.3.3.jar spring-web-6.1.12.jar junit-jupiter-api-5.10.3.jar jackson
+ -annotations-2.17.2.jar spring-core-6.1.12.jar spring-boot-starter-data
+ -jpa-3.3.3.jar jackson-datatype-jdk8-2.17.2.jar thymeleaf-3.1.2.RELEASE
+ .jar istack-commons-runtime-4.1.2.jar spring-security-core-6.3.3.jar ja
+ karta.inject-api-2.0.1.jar byte-buddy-1.14.19.jar spring-test-6.1.12.ja
+ r hibernate-core-6.5.2.Final.jar byte-buddy-agent-1.14.19.jar xmlunit-c
+ ore-2.9.1.jar jackson-core-2.17.2.jar jackson-module-parameter-names-2.
+ 17.2.jar objenesis-3.3.jar aspectjweaver-1.9.22.1.jar jakarta.xml.bind-
+ api-4.0.2.jar spring-boot-autoconfigure-3.3.3.jar spring-data-commons-3
+ .3.3.jar accessors-smart-2.5.1.jar HikariCP-5.1.0.jar jakarta.transacti
+ on-api-2.0.1.jar jsonassert-1.5.3.jar logback-classic-1.5.7.jar antlr4-
+ runtime-4.13.0.jar spring-aop-6.1.12.jar spring-security-config-6.3.3.j
+ ar log4j-to-slf4j-2.23.1.jar mockito-core-5.11.0.jar jakarta.annotation
+ -api-2.1.1.jar postgresql-42.7.3.jar junit-jupiter-params-5.10.3.jar ju
+ nit-platform-commons-1.10.3.jar checker-qual-3.42.0.jar spring-security
+ -web-6.3.3.jar jakarta.activation-api-2.1.3.jar spring-boot-starter-jdb
+ c-3.3.3.jar json-smart-2.5.1.jar spring-jcl-6.1.12.jar spring-boot-star
+ ter-3.3.3.jar android-json-0.0.20131108.vaadin1.jar junit-jupiter-5.10.
+ 3.jar spring-context-6.1.12.jar spring-beans-6.1.12.jar spring-boot-sta
+ rter-tomcat-3.3.3.jar tomcat-embed-el-10.1.28.jar spring-boot-starter-t
+ hymeleaf-3.3.3.jar angus-activation-2.0.2.jar spring-boot-starter-test-
+ 3.3.3.jar snakeyaml-2.2.jar junit-platform-engine-1.10.3.jar logback-co
+ re-1.5.7.jar spring-boot-3.3.3.jar
+

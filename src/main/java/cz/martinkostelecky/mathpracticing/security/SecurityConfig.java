@@ -35,8 +35,8 @@ public class SecurityConfig {
                 .exceptionHandling(httpSecurityExceptionHandlingConfigurer ->
                         httpSecurityExceptionHandlingConfigurer.authenticationEntryPoint(unauthorizedHandler))
                 .authorizeHttpRequests(authorize ->
-                        authorize.requestMatchers("/login", "/authenticate", "/practicing", "/practicing/addition",
-                                        "/practicing/result", "/practicing/subtraction", "/css/**", "/img/**")
+                        authorize.requestMatchers("/login", "/authenticate", "/", "/addition",
+                                        "/result", "/subtraction", "/css/**", "/img/**")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated())
@@ -51,12 +51,11 @@ public class SecurityConfig {
         return httpSecurity.build();
     }
 
-    //Uncomment and choose password
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user = User.builder()
                 .username("admin")
-                //.password(passwordEncoder().encode(""))
+                .password("$2a$12$.sdLmmLx9hpEov18hh/kXeeRNvZ/mofTjw9QhUly.cU7Udaz10aam")
                 .build();
 
         return new InMemoryUserDetailsManager(user);

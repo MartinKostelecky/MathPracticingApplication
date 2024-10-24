@@ -17,7 +17,6 @@ import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping(value = "practicing")
 public class PracticingController {
 
     private final PracticingService practicingService;
@@ -30,12 +29,12 @@ public class PracticingController {
 
     @RequestMapping(value = "/addition", method = RequestMethod.POST)
     public String handleAdditionPost() {
-        return "redirect:/practicing/addition";
+        return "redirect:/addition";
     }
 
     @RequestMapping(value = "/subtraction", method = RequestMethod.POST)
     public String handleSubtractionPost() {
-        return "redirect:/practicing/subtraction";
+        return "redirect:/subtraction";
     }
 
     @RequestMapping(value = "/addition", method = RequestMethod.GET)
@@ -78,7 +77,7 @@ public class PracticingController {
                 redirectAttributes.addFlashAttribute("failureMessage", "ZKUS TO ZNOVU! :(");
                 practicingService.playSound(false);
             }
-            return "redirect:/practicing/addition";
+            return "redirect:/addition";
 
         } else if (example.getCategory().equals("Odčítání")) {
             if (result) {
@@ -90,9 +89,9 @@ public class PracticingController {
                 practicingService.playSound(false);
 
             }
-            return "redirect:/practicing/subtraction";
+            return "redirect:/subtraction";
         }
-        return "redirect:/practicing";
+        return "redirect:/";
     }
 
 }
