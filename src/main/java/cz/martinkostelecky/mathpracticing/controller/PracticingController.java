@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * @author Martin Kostelecký
+ */
 @Controller
 @RequiredArgsConstructor
 public class PracticingController {
@@ -55,6 +55,7 @@ public class PracticingController {
     public String getSubtractionPracticing(Model model) {
 
         Example example = new Example();
+
         example.setCategory("Odčítání");
 
         Optional<Example> optionalExample = practicingService.getRandomExample(example);
@@ -65,29 +66,25 @@ public class PracticingController {
     }
 
     @RequestMapping(value = "/result", method = RequestMethod.POST)
-    public String returnResult(@ModelAttribute Example example, RedirectAttributes redirectAttributes) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    public String returnResult(@ModelAttribute Example example, RedirectAttributes redirectAttributes) {
         Boolean result = practicingService.getResult(example);
-        //TODO switch when multiplication and division added?
+
+        String sound = result ? "success" : "failure";
+        redirectAttributes.addFlashAttribute("sound", sound);
+
         if (example.getCategory().equals("Sčítání")) {
             if (result) {
                 redirectAttributes.addFlashAttribute("successMessage", "JUPÍ, SPRÁVNĚ! :)");
-                practicingService.playSound(true);
-
             } else {
                 redirectAttributes.addFlashAttribute("failureMessage", "ZKUS TO ZNOVU! :(");
-                practicingService.playSound(false);
             }
             return "redirect:/addition";
 
         } else if (example.getCategory().equals("Odčítání")) {
             if (result) {
                 redirectAttributes.addFlashAttribute("successMessage", "JUPÍ, SPRÁVNĚ! :)");
-                practicingService.playSound(true);
-
             } else {
                 redirectAttributes.addFlashAttribute("failureMessage", "ZKUS TO ZNOVU! :(");
-                practicingService.playSound(false);
-
             }
             return "redirect:/subtraction";
         }

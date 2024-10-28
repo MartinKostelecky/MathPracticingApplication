@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author Martin Kostelecký
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -48,9 +51,19 @@ public class ExampleServiceImpl implements ExampleService {
         Boolean existByExampleTitle = exampleRepository.existByExampleTitle(example.getExampleTitle());
 
         if (optionalExistingExample.isPresent()) {
-            Example existingExample = getExample(example, optionalExistingExample, existByExampleTitle);
+            Example existingExample = optionalExistingExample.get();
+            existingExample.setId(example.getId());
+            if (!existingExample.getExampleTitle().equals(example.getExampleTitle()) && existByExampleTitle) {
+                throw new ExampleAlreadyExistException("Example " + example.getExampleTitle() + " already exist in database.");
+            } else {
+                existingExample.setExampleTitle(example.getExampleTitle());
+            }
+
+            existingExample.setRightAnswer(example.getRightAnswer());
             exampleRepository.save(existingExample);
+
             log.info("Example id: {} updated.", example.getId());
+
         } else {
             throw new ExampleNotFoundException("Example not found!");
         }
@@ -61,29 +74,6 @@ public class ExampleServiceImpl implements ExampleService {
 
         exampleRepository.deleteById(id);
         log.info("Example id: {} deleted.", id);
-    }
-
-    private static Example getExample(Example example, Optional<Example> optionalExistingExample, Boolean existByExampleTitle)
-            throws ExampleNotFoundException, ExampleAlreadyExistException {
-
-        Example existingExample;
-
-        if(optionalExistingExample.isPresent()) {
-            existingExample = optionalExistingExample.get();
-        } else {
-            throw new ExampleNotFoundException("Example not found!");
-        }
-
-        existingExample.setId(example.getId());
-
-        if (!existingExample.getExampleTitle().equals(example.getExampleTitle()) && existByExampleTitle) {
-            throw new ExampleAlreadyExistException("Example " + example.getExampleTitle() + " already exist in database.");
-        } else {
-            existingExample.setExampleTitle(example.getExampleTitle());
-        }
-        existingExample.setRightAnswer(example.getRightAnswer());
-
-        return existingExample;
     }
 
 }

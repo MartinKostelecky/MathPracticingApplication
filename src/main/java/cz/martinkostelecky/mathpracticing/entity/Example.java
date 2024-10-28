@@ -8,6 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * @author Martin Kostelecký
+ */
 @Entity
 @Data
 @NoArgsConstructor

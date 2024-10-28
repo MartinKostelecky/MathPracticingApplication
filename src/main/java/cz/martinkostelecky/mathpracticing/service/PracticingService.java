@@ -7,6 +7,9 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * @author Martin Kostelecký
+ */
 public interface PracticingService {
 
     Optional<Example> getRandomExample(Example example);

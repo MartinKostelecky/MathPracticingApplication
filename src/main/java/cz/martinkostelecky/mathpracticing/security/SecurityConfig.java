@@ -16,6 +16,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * @author Martin Kostelecký
+ */
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -40,6 +43,7 @@ public class SecurityConfig {
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated())
+
                 .sessionManagement(sessionManagement ->
                         sessionManagement.invalidSessionUrl("/login?expired")
                                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
@@ -51,11 +55,12 @@ public class SecurityConfig {
         return httpSecurity.build();
     }
 
+    //add BCrypt encoded password
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user = User.builder()
                 .username("admin")
-                .password("$2a$12$.sdLmmLx9hpEov18hh/kXeeRNvZ/mofTjw9QhUly.cU7Udaz10aam")
+                .password("")
                 .build();
 
         return new InMemoryUserDetailsManager(user);

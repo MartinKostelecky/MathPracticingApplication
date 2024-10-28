@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
+/**
+ * @author Martin Kostelecký
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -21,6 +24,11 @@ public class PracticingServiceImpl implements PracticingService {
     private final ExampleRepository exampleRepository;
     private final Map<String, Long> cache = new HashMap<>();
 
+    /**
+     * gets random example by category and by id from database
+     * @param example
+     * @return example of certain category by id
+     */
     @Override
     public Optional<Example> getRandomExample(Example example) {
 
@@ -47,6 +55,11 @@ public class PracticingServiceImpl implements PracticingService {
     }
 
 
+    /**
+     * evaluates answer
+     * @param example
+     * @return whether answer was correct
+     */
     @Override
     public Boolean getResult(Example example) {
 
@@ -61,14 +74,21 @@ public class PracticingServiceImpl implements PracticingService {
         return example.getIsCorrect();
     }
 
+    /**
+     * plays custom wav sound file according to the correctness of the answer
+     * @param result
+     * @throws UnsupportedAudioFileException
+     * @throws IOException
+     * @throws LineUnavailableException
+     */
     @Override
     public void playSound(Boolean result) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 
         Clip clip = AudioSystem.getClip();
         AudioInputStream audioIn = null;
         try {
-            URL soundUrl = result ? getClass().getResource("/audio/success.wav")
-                    : getClass().getResource("/audio/failure.wav");
+            URL soundUrl = result ? getClass().getResource("/static/audio/success.wav")
+                    : getClass().getResource("/static/audio/failure.wav");
             if (soundUrl == null) throw new IllegalArgumentException("Audio file not found");
 
             audioIn = AudioSystem.getAudioInputStream(soundUrl);

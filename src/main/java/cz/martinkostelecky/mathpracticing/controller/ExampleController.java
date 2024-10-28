@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+/**
+ * @author Martin Kostelecký
+ */
 @Controller
 @RequiredArgsConstructor
 public class ExampleController {

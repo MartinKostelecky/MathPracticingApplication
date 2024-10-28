@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * @author Martin Kostelecký
+ */
 @Repository
 public interface ExampleRepository extends JpaRepository<Example, Long> {
 

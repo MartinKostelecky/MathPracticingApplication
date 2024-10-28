@@ -1,11 +1,12 @@
 spring:
+#  PROD
   #  datasource:
   #    url: jdbc:postgresql://db:5433/mathexamplesdb
   #    username: mathpostgresqldb
   #    password: ${POSTGRES_PASSWORD}
   #    driverClassName: org.postgresql.Driver
 
-
+# DEV
   datasource:
     url: jdbc:postgresql://localhost:5433/mathexamplesdb
     username: postgres

@@ -41,8 +41,29 @@
             <p th:text="${failureMessage}"></p>
         </div>
     </div>
-
 </div>
+
+<!--<audio id="success-sound" src="https://treninkmatematiky.online/audio/success.wav"></audio>-->
+<!--<audio id="failure-sound" src="https://treninkmatematiky.online/audio/failure.wav"></audio>-->
+
+<audio id="success-sound" src="http://localhost:8080/audio/success.wav" preload="auto" hidden></audio>
+<audio id="failure-sound" src="http://localhost:8080/audio/failure.wav" preload="auto" hidden></audio>
+
+<script th:inline="javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var successSound = document.getElementById("success-sound");
+        var failureSound = document.getElementById("failure-sound");
+
+        var successMessage = /*[[${successMessage!= null}]]*/ false;
+        var failureMessage = /*[[${failureMessage!= null}]]*/ false;
+
+        if (successMessage) {
+            successSound.play().catch(error => console.log("Error playing sound:", error));
+        } else if (failureMessage) {
+            failureSound.play().catch(error => console.log("Error playing sound:", error));
+        }
+    });
+</script>
 
 </body>
 </html>

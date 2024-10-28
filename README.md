@@ -10,3 +10,4 @@ Second goal: change the architecture to microservices. Link to microservices ver
 
 Used technologies: Java, Spring, PostgreSQL, Thymeleaf, JUnit, Mockito, Lombok, Bootstrap, HTML, CSS
 
+Author: Martin Kostelecký kosteleckymartin@gmail.com

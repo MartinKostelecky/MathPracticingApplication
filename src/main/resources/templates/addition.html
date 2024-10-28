@@ -17,32 +17,51 @@
     <div class="text-center">
         <h1 class="font">Procvičování matematiky - sčítání +</h1>
     </div>
-
     <div class="container">
         <h2 class="font">Příklad:</h2>
         <p th:text="${example.get().getExampleTitle()}" class="font"></p>
-
         <form th:action="@{/result}" method="post">
             <div class="form-group">
                 <input type="hidden" th:field="*{example.id}"/>
                 <input type="hidden" th:field="*{example.category}"/>
                 <label for="answer">=</label>
                 <input type="text" class="form-control" placeholder="VÍŠ KOLIK TO JE? :)" id="answer" name="answer"
-                                                   th:field="*{example.answer}" required/>
+                       th:field="*{example.answer}" required/>
             </div>
             <button type="submit">ZKONTROLOVAT</button>
         </form>
-
         <div th:if="${successMessage}" class="font alert alert-success">
             <p th:text="${successMessage}"></p>
         </div>
-
         <div th:if="${failureMessage}" class="font-mistake font alert alert-danger">
             <p th:text="${failureMessage}"></p>
         </div>
     </div>
-
 </div>
+
+<!--PROD-->
+<!--<audio id="success-sound" src="https://treninkmatematiky.online/audio/success.wav"></audio>-->
+<!--<audio id="failure-sound" src="https://treninkmatematiky.online/audio/failure.wav"></audio>-->
+
+<!--DEV-->
+<audio id="success-sound" src="http://localhost:8080/audio/success.wav" preload="auto" hidden></audio>
+<audio id="failure-sound" src="http://localhost:8080/audio/failure.wav" preload="auto" hidden></audio>
+
+<script th:inline="javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var successSound = document.getElementById("success-sound");
+        var failureSound = document.getElementById("failure-sound");
+
+        var successMessage = /*[[${successMessage!= null}]]*/ false;
+        var failureMessage = /*[[${failureMessage!= null}]]*/ false;
+
+        if (successMessage) {
+            successSound.play().catch(error => console.log("Error playing sound:", error));
+        } else if (failureMessage) {
+            failureSound.play().catch(error => console.log("Error playing sound:", error));
+        }
+    });
+</script>
 
 </body>
 </html>

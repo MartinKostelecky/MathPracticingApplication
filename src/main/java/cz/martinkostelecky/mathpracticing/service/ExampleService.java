@@ -6,6 +6,9 @@ import cz.martinkostelecky.mathpracticing.exception.ExampleNotFoundException;
 
 import java.util.List;
 
+/**
+ * @author Martin Kostelecký
+ */
 public interface ExampleService {
 
     List<Example> getAllExamples();
