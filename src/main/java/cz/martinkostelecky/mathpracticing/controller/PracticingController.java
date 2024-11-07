@@ -67,10 +67,8 @@ public class PracticingController {
 
     @RequestMapping(value = "/result", method = RequestMethod.POST)
     public String returnResult(@ModelAttribute Example example, RedirectAttributes redirectAttributes) {
-        Boolean result = practicingService.getResult(example);
 
-        String sound = result ? "success" : "failure";
-        redirectAttributes.addFlashAttribute("sound", sound);
+        Boolean result = practicingService.getResult(example);
 
         if (example.getCategory().equals("Sčítání")) {
             if (result) {

@@ -35,8 +35,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
         httpSecurity
-                .exceptionHandling(httpSecurityExceptionHandlingConfigurer ->
-                        httpSecurityExceptionHandlingConfigurer.authenticationEntryPoint(unauthorizedHandler))
+                //.exceptionHandling(httpSecurityExceptionHandlingConfigurer ->
+                        //httpSecurityExceptionHandlingConfigurer.authenticationEntryPoint(unauthorizedHandler))
                 .authorizeHttpRequests(authorize ->
                         authorize.requestMatchers("/login", "/authenticate", "/", "/addition",
                                         "/result", "/subtraction", "/css/**", "/img/**", "/audio/**")
@@ -60,7 +60,7 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService() {
         UserDetails user = User.builder()
                 .username("admin")
-                .password("")
+                .password("$2a$12$mPAadeBGoLVtgCBWbh83JupXX1c.cGwNbqxi.5sGfqlfCe4c.USmi")
                 .build();
 
         return new InMemoryUserDetailsManager(user);

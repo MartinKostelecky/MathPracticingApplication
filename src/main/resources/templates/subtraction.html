@@ -18,7 +18,7 @@
         <h1 class="font">Procvičování matematiky - odčítání -</h1>
     </div>
 
-    <div class="container">
+    <div class="container" id="main-container">
         <h2 class="font">Příklad:</h2>
         <p th:text="${example.get().getExampleTitle()}" class="font"></p>
 
@@ -43,8 +43,8 @@
     </div>
 </div>
 
-<!--<audio id="success-sound" src="https://treninkmatematiky.online/audio/success.wav"></audio>-->
-<!--<audio id="failure-sound" src="https://treninkmatematiky.online/audio/failure.wav"></audio>-->
+<!--<audio id="success-sound" src="https://treninkmatematiky.online/audio/success.wav" preload="auto" hidden></audio>-->
+<!--<audio id="failure-sound" src="https://treninkmatematiky.online/audio/failure.wav" preload="auto" hidden></audio>-->
 
 <audio id="success-sound" src="http://localhost:8080/audio/success.wav" preload="auto" hidden></audio>
 <audio id="failure-sound" src="http://localhost:8080/audio/failure.wav" preload="auto" hidden></audio>
@@ -53,17 +53,27 @@
     document.addEventListener("DOMContentLoaded", function () {
         var successSound = document.getElementById("success-sound");
         var failureSound = document.getElementById("failure-sound");
+        var container = document.getElementById("main-container");
 
         var successMessage = /*[[${successMessage!= null}]]*/ false;
         var failureMessage = /*[[${failureMessage!= null}]]*/ false;
 
         if (successMessage) {
             successSound.play().catch(error => console.log("Error playing sound:", error));
+            container.classList.add("rainbow-border"); // Add rainbow border class
         } else if (failureMessage) {
             failureSound.play().catch(error => console.log("Error playing sound:", error));
+            container.classList.remove("rainbow-border"); // Remove rainbow border class on failure
         }
+
+        // Remove the rainbow border when the button is clicked again
+        var checkButton = document.querySelector("button[type='submit']");
+        checkButton.addEventListener("click", function() {
+            container.classList.remove("rainbow-border");
+        });
     });
 </script>
 
 </body>
+</html>
 </html>
