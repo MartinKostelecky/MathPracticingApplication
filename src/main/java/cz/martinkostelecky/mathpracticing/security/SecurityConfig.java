@@ -60,7 +60,7 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService() {
         UserDetails user = User.builder()
                 .username("admin")
-                .password("$2a$12$mPAadeBGoLVtgCBWbh83JupXX1c.cGwNbqxi.5sGfqlfCe4c.USmi")
+                .password("")
                 .build();
 
         return new InMemoryUserDetailsManager(user);

@@ -1,22 +1,24 @@
 package cz.martinkostelecky.mathpracticing.service.impl;
 
+
 import cz.martinkostelecky.mathpracticing.entity.Example;
 import cz.martinkostelecky.mathpracticing.repository.ExampleRepository;
 import cz.martinkostelecky.mathpracticing.service.PracticingService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
 /**
  * @author Martin Kostelecký
  */
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PracticingServiceImpl implements PracticingService {
 
+    private static final Logger logger = LoggerFactory.getLogger(PracticingServiceImpl.class);
     Random random = new Random();
     private final ExampleRepository exampleRepository;
     private final Map<String, Long> cache = new HashMap<>();
@@ -46,7 +48,7 @@ public class PracticingServiceImpl implements PracticingService {
 
         // Store the current ID in the cache
         cache.put("lastUsedId", id);
-        log.info("Random example id: {}", id);
+        logger.info("Random example id: {}", id);
 
         return exampleRepository.findById(id);
     }
@@ -64,7 +66,7 @@ public class PracticingServiceImpl implements PracticingService {
             Example exampleToCompare = exampleRepository.findById(example.getId()).get();
             example.setIsCorrect(example.getAnswer().equals(exampleToCompare.getRightAnswer()));
 
-            log.info("User answer {} for example {} was: {}",
+            logger.info("User answer {} for example {} was: {}",
                     example.getAnswer(), exampleToCompare.getExampleTitle(), example.getIsCorrect());
 
         }
