@@ -89,4 +89,9 @@ public class PracticingController {
         return "redirect:/";
     }
 
+    @RequestMapping(value = "/about", method = RequestMethod.GET)
+    public String aboutPage() {
+        return "about";
+    }
+
 }

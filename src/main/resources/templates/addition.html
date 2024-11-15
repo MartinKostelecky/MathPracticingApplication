@@ -30,8 +30,8 @@
 <div class="col-lg-10 col-md-6 col-sm-6 justify-content-center">
     <div class="text-center">
         <h1 class="font">Procvičování matematiky - sčítání +</h1>
-    </div>
-    <div class="container" id="main-container">
+
+        <div class="container" id="main-container">
         <h2 class="font">Příklad:</h2>
         <p th:text="${example.get().getExampleTitle()}" class="font"></p>
         <form th:action="@{/result}" method="post">
@@ -49,6 +49,10 @@
         </div>
         <div th:if="${failureMessage}" class="font-mistake font alert alert-danger">
             <p th:text="${failureMessage}"></p>
+        </div>
+    </div>
+        <div class="text-center">
+            <a th:href="@{/}" class="button-no-background">Zpět na hlavní stranu</a>
         </div>
     </div>
 </div>
@@ -76,6 +80,8 @@
         } else if (failureMessage) {
             failureSound.play().catch(error => console.log("Error playing sound:", error));
             container.classList.remove("rainbow-border"); // Remove rainbow border class on failure
+            container.classList.add("greyscale-border");
+            container.classList.add("container-mistake");
         }
 
         // Remove the rainbow border when the button is clicked again
