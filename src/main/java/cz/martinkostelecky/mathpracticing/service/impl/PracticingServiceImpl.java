@@ -2,12 +2,13 @@ package cz.martinkostelecky.mathpracticing.service.impl;
 
 
 import cz.martinkostelecky.mathpracticing.entity.Example;
+import cz.martinkostelecky.mathpracticing.exception.ExampleNotFoundException;
 import cz.martinkostelecky.mathpracticing.repository.ExampleRepository;
 import cz.martinkostelecky.mathpracticing.service.PracticingService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
@@ -53,6 +54,10 @@ public class PracticingServiceImpl implements PracticingService {
         return exampleRepository.findById(id);
     }
 
+    @Override
+    public int getRandomNumber() {
+        return random.nextInt(10);
+    }
 
     /**
      * evaluates answer
@@ -71,6 +76,26 @@ public class PracticingServiceImpl implements PracticingService {
 
         }
         return example.getIsCorrect();
+    }
+
+    /**
+     * evaluates result based on logic operator selected by user
+     */
+    @Override
+    public Boolean getResultLogicOperators(int firstNumber, int secondNumber, String chosenOperator) {
+
+        if (firstNumber > secondNumber && chosenOperator.equals(">")) {
+            logger.info("User answer for example {} {} {} was: {}", firstNumber, chosenOperator, secondNumber, true);
+            return true;
+        } else if (firstNumber < secondNumber && chosenOperator.equals("<")) {
+            logger.info("User answer for example {} {} {} was: {}", firstNumber, chosenOperator, secondNumber, true);
+            return true;
+        } else if (firstNumber == secondNumber && chosenOperator.equals("=")) {
+            logger.info("User answer for example {} {} {} was: {}", firstNumber, chosenOperator, secondNumber, true);
+            return true;
+        }
+        logger.info("User answer for example {} {} {} was: {}", firstNumber, chosenOperator, secondNumber, false);
+        return false;
     }
 
 }

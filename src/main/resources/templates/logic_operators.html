@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Procvičování matematiky: sčítání +</title>
+    <title>Procvičování matematiky: > < =</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,21 +15,24 @@
 <body>
 <div class="col-lg-10 col-md-6 col-sm-6 justify-content-center">
     <div class="text-center">
-        <h1 class="font">Procvičování matematiky: sčítání +</h1>
-
+        <h1 class="font">Procvičování matematiky: > < =</h1>
         <div class="container" id="main-container">
             <h2 class="font">Příklad:</h2>
-            <p th:text="${example.get().getExampleTitle()}" class="font"></p>
-            <form th:action="@{/result}" method="post">
-                <div class="form-group">
-                    <input type="hidden" th:field="*{example.id}"/>
-                    <input type="hidden" th:field="*{example.category}"/>
-                    <label for="answer">=</label>
-                    <input type="text" class="form-control" placeholder="VÍŠ KOLIK TO JE? :)" id="answer" name="answer"
-                           th:field="*{example.answer}" required/>
+            <form th:action="@{/result-logic}" method="post">
+                <div class="form-group form-inline-centered">
+                    <p th:text="${firstNumber}" class="font"></p>
+                    <input type="hidden" name="firstNumber" th:value="${firstNumber}"/>
+                    <select class="form-control" style="font-size: 60px" name="chosenOperator" th:value="${chosenOperator}" required>
+                        <option value=">">></option>
+                        <option value="<"><</option>
+                        <option value="=">=</option>
+                    </select>
+                    <p th:text="${secondNumber}" class="font"></p>
+                    <input type="hidden" name="secondNumber" th:value="${secondNumber}"/>
                 </div>
                 <button type="submit">ZKONTROLOVAT</button>
             </form>
+
             <div th:if="${successMessage}" class="font alert alert-success">
                 <p th:text="${successMessage}"></p>
             </div>
@@ -72,7 +75,7 @@
 
         // Remove the rainbow border when the button is clicked again
         var checkButton = document.querySelector("button[type='submit']");
-        checkButton.addEventListener("click", function() {
+        checkButton.addEventListener("click", function () {
             container.classList.remove("rainbow-border");
         });
     });
@@ -80,4 +83,3 @@
 
 </body>
 </html>
-
