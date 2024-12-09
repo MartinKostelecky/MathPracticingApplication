@@ -45,7 +45,7 @@ public class PracticingController {
     }
 
     @RequestMapping(value = "/addition", method = RequestMethod.GET)
-    public String getAdditionPracticing(Model model) {
+    public String getAdditionPracticing(Model model) throws ExampleNotFoundException {
 
         Example example = new Example();
 
@@ -59,7 +59,7 @@ public class PracticingController {
     }
 
     @RequestMapping(value = "/subtraction", method = RequestMethod.GET)
-    public String getSubtractionPracticing(Model model) {
+    public String getSubtractionPracticing(Model model) throws ExampleNotFoundException {
 
         Example example = new Example();
 
