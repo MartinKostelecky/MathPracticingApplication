@@ -2,12 +2,13 @@ package cz.martinkostelecky.mathpracticing.service.impl;
 
 
 import cz.martinkostelecky.mathpracticing.entity.Example;
+import cz.martinkostelecky.mathpracticing.exception.ExampleNotFoundException;
 import cz.martinkostelecky.mathpracticing.repository.ExampleRepository;
 import cz.martinkostelecky.mathpracticing.service.PracticingService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
@@ -25,15 +26,17 @@ public class PracticingServiceImpl implements PracticingService {
 
     /**
      * gets random example by category and by id from database
+     *
      * @param example
      * @return example of certain category by id
      */
     @Override
-    public Optional<Example> getRandomExample(Example example) {
+    public Optional<Example> getRandomExample(Example example) throws ExampleNotFoundException {
 
         List<Example> examples = exampleRepository.findByCategory(example.getCategory());
         if (examples.isEmpty()) {
-            return Optional.empty();
+            logger.info("Žádný příklad nenalezen");
+            throw new ExampleNotFoundException("Žádný příklad nenalezen");
         }
 
         List<Long> ids = examples.stream().map(Example::getId).toList();
@@ -53,9 +56,14 @@ public class PracticingServiceImpl implements PracticingService {
         return exampleRepository.findById(id);
     }
 
+    @Override
+    public int getRandomNumber() {
+        return random.nextInt(10);
+    }
 
     /**
      * evaluates answer
+     *
      * @param example
      * @return whether answer was correct
      */
@@ -71,6 +79,23 @@ public class PracticingServiceImpl implements PracticingService {
 
         }
         return example.getIsCorrect();
+    }
+
+    /**
+     *
+     */
+    @Override
+    public Boolean getResultLogicOperators(int firstNumber, int secondNumber, String chosenOperator) {
+
+        boolean result = switch (chosenOperator) {
+            case ">" -> firstNumber > secondNumber;
+            case "<" -> firstNumber < secondNumber;
+            case "=" -> firstNumber == secondNumber;
+            default -> false;
+        };
+
+        logger.info("User answer for example {} {} {} was: {}", firstNumber, chosenOperator, secondNumber, result);
+        return result;
     }
 
 }

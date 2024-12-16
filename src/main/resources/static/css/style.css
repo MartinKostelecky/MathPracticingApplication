@@ -150,4 +150,18 @@ button:hover {
     font-size: 60px;
     margin-bottom: 20px;
     filter: grayscale(100%);
+
+}.form-inline-centered {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 10px;
+     text-align: center;
+ }
+
+.form-inline-centered p,
+.form-inline-centered select,
+.form-inline-centered input[type="hidden"] {
+    margin-right: 10px;
+    margin-left: 10px;
 }
