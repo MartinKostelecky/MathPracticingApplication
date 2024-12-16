@@ -11,13 +11,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    max-height: 100vh;
 }
 
 .container {
     background-color: #ffc0cb; /* Pastel pink */
     padding: 20px;
     border-radius: 10px;
+    margin-top: 0;
     text-align: center;
 }
 
@@ -30,6 +31,12 @@ body {
 .font-smaller {
     font-family: 'Honk', sans-serif;
     font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.font-smallest {
+    font-family: 'Honk', sans-serif;
+    font-size: 30px;
     margin-bottom: 20px;
 }
 
@@ -56,7 +63,6 @@ button {
     background-color: #ffc0cb; /* Pastel pink */
     font-family: 'Honk', sans-serif;
     font-size: 60px;
-    color: white;
     border: none;
     margin-top: 20px;
     padding: 10px 20px;
@@ -74,6 +80,32 @@ button:hover {
     transition: linear 1s;
 }
 
+.button-no-background {
+    background-color: transparent;
+    font-family: 'Honk', sans-serif;
+    font-size: 60px;
+    border: none;
+    margin-top: 0;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: none;
+    align-self: center;
+}
+
+.button-no-background:hover {
+    background: none;
+    transition: none;
+}
+
+.text-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    flex-direction: column;
+}
+
 @keyframes rainbowBorder {
     0% { border-color: red; }
     14% { border-color: orange; }
@@ -87,4 +119,35 @@ button:hover {
 .rainbow-border {
     border: 10px solid;
     animation: rainbowBorder 5s infinite;
+}
+
+@keyframes greyScaleBorder {
+    0% {
+        border-color: black;
+    }
+    50% {
+        border-color: grey;
+    }
+    100% {
+        border-color: white;
+    }
+}
+
+.greyscale-border {
+    border: 10px solid;
+    animation: greyScaleBorder 5s infinite;
+}
+
+.container-mistake {
+    background-color: grey; /* Pastel pink */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.font-mistake {
+    font-family: 'Honk', sans-serif;
+    font-size: 60px;
+    margin-bottom: 20px;
+    filter: grayscale(100%);
 }

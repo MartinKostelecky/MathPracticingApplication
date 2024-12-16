@@ -8,6 +8,6 @@ Questions will be stored in database and there will be possibility to add, updat
 
 Second goal: change the architecture to microservices. Link to microservices version: https://github.com/MartinKostelecky/mathpracticing-microservices
 
-Used technologies: Java, Spring, PostgreSQL, Thymeleaf, JUnit, Mockito, Lombok, Bootstrap, HTML, CSS
+Used technologies: Java 21, Spring Boot, JavaScript, Docker, PostgreSQL, Thymeleaf, JUnit, Mockito, Lombok, Bootstrap, HTML, CSS
 
 Author: Martin Kostelecký kosteleckymartin@gmail.com
