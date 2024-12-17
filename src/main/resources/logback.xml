@@ -1,7 +1,6 @@
 <configuration>
     <!--add path to log file-->
-    <!--        TODO Working path for VPS-->
-    <variable name="PATH" value="" />
+    <variable name="PATH" value=""/>
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>${PATH}/app.log</file>
