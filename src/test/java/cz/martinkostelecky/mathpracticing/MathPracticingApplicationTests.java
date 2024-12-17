@@ -1,4 +1,4 @@
-package com.example.mathpracticing;
+package cz.martinkostelecky.mathpracticing;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
