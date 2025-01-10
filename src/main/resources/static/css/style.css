@@ -165,3 +165,17 @@ button:hover {
     margin-right: 10px;
     margin-left: 10px;
 }
+
+.unicorn-counter {
+    display: flex;
+}
+
+.unicorn img {
+    max-height: 100px;
+    max-width: 100px;
+    border-radius: 50%;
+}
+
+
+
+

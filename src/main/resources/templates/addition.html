@@ -11,32 +11,39 @@
     <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
 
 </head>
-
 <body>
+
 <div class="col-lg-10 col-md-6 col-sm-6 justify-content-center">
     <div class="text-center">
         <h1 class="font">Procvičování matematiky: sčítání +</h1>
 
-        <div class="container" id="main-container">
-            <h2 class="font">Příklad:</h2>
+        <div class="container" id="main-container"><h2 class="font">Příklad:</h2>
             <p th:text="${example.get().getExampleTitle()}" class="font"></p>
             <form th:action="@{/result}" method="post">
-                <div class="form-group">
-                    <input type="hidden" th:field="*{example.id}"/>
-                    <input type="hidden" th:field="*{example.category}"/>
-                    <label for="answer">=</label>
-                    <input type="text" class="form-control" placeholder="VÍŠ KOLIK TO JE? :)" id="answer" name="answer"
-                           th:field="*{example.answer}" required/>
-                </div>
+                <div class="form-group"><input type="hidden" th:field="*{example.id}"/> <input type="hidden"
+                                                                                               th:field="*{example.category}"/>
+                    <label for="answer">=</label> <input type="text" class="form-control"
+                                                         placeholder="VÍŠ KOLIK TO JE? :)" id="answer" name="answer"
+                                                         th:field="*{example.answer}" required/></div>
                 <button type="submit">ZKONTROLOVAT</button>
             </form>
-            <div th:if="${successMessage}" class="font alert alert-success">
-                <p th:text="${successMessage}"></p>
+
+            <div th:if="${successMessage}" class="font alert alert-success"><p th:text="${successMessage}"></p></div>
+            <div th:if="${failureMessage}" class="font-mistake font alert alert-danger"><p
+                    th:text="${failureMessage}"></p></div>
+
+            <div class="unicorn-counter">
+                <div th:each="badge : ${unicorns}" class="unicorn">
+                    <img th:src="@{img/unicorn.jpg}" alt="Unicorn"/>
+                </div>
             </div>
-            <div th:if="${failureMessage}" class="font-mistake font alert alert-danger">
-                <p th:text="${failureMessage}"></p>
-            </div>
+            <!--            TODO -->
+            <!--            <div th:if="${unicorns != null && unicorns.size() == 10}" class="font alert alert-success">-->
+            <!--                <p th:text="${unicornsMessage}"></p>-->
+            <!--            </div>-->
+            <!-- TODO show href for new beginning after 10 successful answers -->
         </div>
+
         <div class="text-center">
             <a th:href="@{/}" class="button-no-background">Zpět na hlavní stranu</a>
         </div>
