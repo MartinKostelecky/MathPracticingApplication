@@ -2,7 +2,9 @@ package cz.martinkostelecky.mathpracticing.controller;
 
 import cz.martinkostelecky.mathpracticing.entity.Example;
 import cz.martinkostelecky.mathpracticing.exception.ExampleNotFoundException;
+import cz.martinkostelecky.mathpracticing.model.UnicornBadge;
 import cz.martinkostelecky.mathpracticing.service.PracticingService;
+import cz.martinkostelecky.mathpracticing.service.UnicornBadgeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -22,6 +25,7 @@ import java.util.Optional;
 public class PracticingController {
 
     private final PracticingService practicingService;
+    private final UnicornBadgeService unicornBadgeService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String renderPracticingPage() {
@@ -87,24 +91,24 @@ public class PracticingController {
     }
 
     @RequestMapping(value = "/result", method = RequestMethod.POST)
-    public String returnResult(@ModelAttribute Example example, RedirectAttributes redirectAttributes) {
+    public String returnResult(@ModelAttribute Example example, Model model, RedirectAttributes redirectAttributes) {
 
         Boolean result = practicingService.getResult(example);
+        List<UnicornBadge> unicornBadgeList = unicornBadgeService.getListOfColoredUnicorns(result);
+
+        if (result) {
+            redirectAttributes.addFlashAttribute("successMessage", "JUPÍ, SPRÁVNĚ! :)");
+            redirectAttributes.addFlashAttribute("unicorns", unicornBadgeList);
+// TODO
+//            redirectAttributes.addFlashAttribute("unicornsMessage", "!!!GRATULUJI, MÁŠ VŠECH DESET JEDNOROŽCŮ!!!");
+        } else {
+            redirectAttributes.addFlashAttribute("failureMessage", "ZKUS TO ZNOVU! :(");
+            redirectAttributes.addFlashAttribute("unicorns", unicornBadgeList);
+        }
 
         if (example.getCategory().equals("Sčítání")) {
-            if (result) {
-                redirectAttributes.addFlashAttribute("successMessage", "JUPÍ, SPRÁVNĚ! :)");
-            } else {
-                redirectAttributes.addFlashAttribute("failureMessage", "ZKUS TO ZNOVU! :(");
-            }
             return "redirect:/addition";
-
         } else if (example.getCategory().equals("Odčítání")) {
-            if (result) {
-                redirectAttributes.addFlashAttribute("successMessage", "JUPÍ, SPRÁVNĚ! :)");
-            } else {
-                redirectAttributes.addFlashAttribute("failureMessage", "ZKUS TO ZNOVU! :(");
-            }
             return "redirect:/subtraction";
         }
         return "redirect:/";
