@@ -37,11 +37,9 @@
                     <img th:src="@{img/unicorn.jpg}" alt="Unicorn"/>
                 </div>
             </div>
-            <!--            TODO -->
-            <!--            <div th:if="${unicorns != null && unicorns.size() == 10}" class="font alert alert-success">-->
-            <!--                <p th:text="${unicornsMessage}"></p>-->
-            <!--            </div>-->
-            <!-- TODO show href for new beginning after 10 successful answers -->
+            <div th:if="${unicorns != null && unicorns.size() == 10}" class="font alert alert-success">
+                <p th:text="${unicornsMessage}"></p>
+            </div>
         </div>
 
         <div class="text-center">
