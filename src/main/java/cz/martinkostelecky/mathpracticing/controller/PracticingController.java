@@ -2,7 +2,6 @@ package cz.martinkostelecky.mathpracticing.controller;
 
 import cz.martinkostelecky.mathpracticing.entity.Example;
 import cz.martinkostelecky.mathpracticing.exception.ExampleNotFoundException;
-import cz.martinkostelecky.mathpracticing.model.UnicornBadge;
 import cz.martinkostelecky.mathpracticing.service.PracticingService;
 import cz.martinkostelecky.mathpracticing.service.UnicornBadgeService;
 import lombok.RequiredArgsConstructor;
@@ -94,13 +93,12 @@ public class PracticingController {
     public String returnResult(@ModelAttribute Example example, Model model, RedirectAttributes redirectAttributes) {
 
         Boolean result = practicingService.getResult(example);
-        List<UnicornBadge> unicornBadgeList = unicornBadgeService.getListOfColoredUnicorns(result);
+        List<UnicornBadgeService.UnicornBadge> unicornBadgeList = unicornBadgeService.getListOfColoredUnicorns(result);
 
         if (result) {
             redirectAttributes.addFlashAttribute("successMessage", "JUPÍ, SPRÁVNĚ! :)");
             redirectAttributes.addFlashAttribute("unicorns", unicornBadgeList);
-// TODO
-//            redirectAttributes.addFlashAttribute("unicornsMessage", "!!!GRATULUJI, MÁŠ VŠECH DESET JEDNOROŽCŮ!!!");
+            redirectAttributes.addFlashAttribute("unicornsMessage", "!!!GRATULUJI, MÁŠ VŠECH DESET JEDNOROŽCŮ!!!");
         } else {
             redirectAttributes.addFlashAttribute("failureMessage", "ZKUS TO ZNOVU! :(");
             redirectAttributes.addFlashAttribute("unicorns", unicornBadgeList);
