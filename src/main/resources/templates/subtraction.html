@@ -14,9 +14,9 @@
 
 <body>
 <div class="col-lg-10 col-md-6 col-sm-6 justify-content-center">
-    <div class="text-center">
-        <h1 class="font">Procvičování matematiky: odčítání -</h1>
 
+    <div class="text-center">
+        <h1 class="font category-title">Procvičování matematiky: odčítání -</h1>
 
         <div class="container" id="main-container">
             <h2 class="font">Příklad:</h2>
@@ -33,18 +33,17 @@
                 <button type="submit">ZKONTROLOVAT</button>
             </form>
 
-            <div th:if="${successMessage}" class="font alert alert-success">
-                <p th:text="${successMessage}"></p>
-            </div>
+            <div th:if="${successMessage}"><p th:text="${successMessage}" class="font alert alert-success"></p></div>
+            <div th:if="${failureMessage}"><p th:text="${failureMessage}" class="font-mistake font alert alert-danger"></p></div>
 
-            <div th:if="${failureMessage}" class="font-mistake font alert alert-danger">
-                <p th:text="${failureMessage}"></p>
-            </div>
         </div>
+
         <div class="text-center">
             <a th:href="@{/}" class="button-no-background">Zpět na hlavní stranu</a>
         </div>
+
     </div>
+
 </div>
 
 <!--PROD-->

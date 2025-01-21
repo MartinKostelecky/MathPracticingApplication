@@ -15,9 +15,9 @@ public class UnicornBadgeService {
 
     private static final Logger logger = LoggerFactory.getLogger(UnicornBadgeService.class);
     private List<UnicornBadge> unicornBadges;
-    private final int MAX_BADGES = 11;
+    private static final int MAX_BADGES = 10;
 
-    public List<UnicornBadge> getListOfColoredUnicorns(Boolean result) {
+    public List<UnicornBadge> getListOfUnicornBadges(Boolean result) {
         if (result) {
             unicornBadges.add(new UnicornBadge());
             logger.info("Badge was added");
@@ -33,7 +33,8 @@ public class UnicornBadgeService {
     }
 
     @NoArgsConstructor
-    public static class UnicornBadge {}
+    public static class UnicornBadge {
+    }
 
 }
 

@@ -6,7 +6,6 @@
 
 body {
     background-image: url("/img/catbackground.jpg");
-    /*background-color: #d1aaff; /* Pastel purple */
     margin: 0;
     display: flex;
     justify-content: center;
@@ -14,57 +13,68 @@ body {
     max-height: 100vh;
 }
 
+.category-title {
+    padding-top: 10vh;
+}
+
 .container {
-    background-color: #ffc0cb; /* Pastel pink */
+    background-color: #ffc0cb;
+    border-radius: 10px;
+    margin-top: 1vh;
+    padding: 1vh 2vw;
+    text-align: center;
+    height: auto;
+    width: auto;
+}
+
+.container-mistake {
+    background-color: grey;
     padding: 20px;
     border-radius: 10px;
-    margin-top: 0;
     text-align: center;
 }
 
 .font {
     font-family: 'Honk', sans-serif;
-    font-size: 60px;
-    margin-bottom: 20px;
+    font-size: 4vw;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
 }
 
 .font-smaller {
     font-family: 'Honk', sans-serif;
-    font-size: 40px;
-    margin-bottom: 20px;
+    font-size: 3vw;
 }
 
 .font-smallest {
     font-family: 'Honk', sans-serif;
-    font-size: 30px;
-    margin-bottom: 20px;
+    font-size: 2vw;
 }
 
 .font-mistake {
     font-family: 'Honk', sans-serif;
-    font-size: 60px;
-    margin-bottom: 20px;
+    font-size: 3vw;
     filter: grayscale(100%);
 }
 
 label {
     font-family: 'Honk', sans-serif;
-    font-size: 40px;
+    font-size: 3vw;
 }
 
 input[type="text"] {
     width: 100%;
-    height: 60px;
-    font-size: 24px;
-    padding: 10px;
+    height: 5vh;
+    font-size: 2vw;
+    padding: 1vh 2vw;
 }
 
 button {
-    background-color: #ffc0cb; /* Pastel pink */
+    background-color: #ffc0cb;
     font-family: 'Honk', sans-serif;
-    font-size: 60px;
+    font-size: 4vw;
     border: none;
-    margin-top: 20px;
+    margin: 1vh;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
@@ -83,9 +93,8 @@ button:hover {
 .button-no-background {
     background-color: transparent;
     font-family: 'Honk', sans-serif;
-    font-size: 60px;
+    font-size: 4vw;
     border: none;
-    margin-top: 0;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
@@ -102,7 +111,8 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: auto;
+    margin: 1vh 1vw;
+    padding: 1vh 1vw;
     flex-direction: column;
 }
 
@@ -116,6 +126,7 @@ button:hover {
     85% { border-color: violet; }
     100% { border-color: red; }
 }
+
 .rainbow-border {
     border: 10px solid;
     animation: rainbowBorder 5s infinite;
@@ -138,26 +149,13 @@ button:hover {
     animation: greyScaleBorder 5s infinite;
 }
 
-.container-mistake {
-    background-color: grey; /* Pastel pink */
-    padding: 20px;
-    border-radius: 10px;
+.form-inline-centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     text-align: center;
 }
-
-.font-mistake {
-    font-family: 'Honk', sans-serif;
-    font-size: 60px;
-    margin-bottom: 20px;
-    filter: grayscale(100%);
-
-}.form-inline-centered {
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     gap: 10px;
-     text-align: center;
- }
 
 .form-inline-centered p,
 .form-inline-centered select,
@@ -168,14 +166,14 @@ button:hover {
 
 .unicorn-counter {
     display: flex;
+    margin: 1vh 1vw;
+    padding: 1vh 1vw;
 }
 
 .unicorn img {
-    max-height: 100px;
-    max-width: 100px;
+    /*1vh means 1% of screen height*/
+    max-height: 10vh;
+    /*1vw means 1% of screen width*/
+    max-width: 10vw;
     border-radius: 50%;
 }
-
-
-
-
