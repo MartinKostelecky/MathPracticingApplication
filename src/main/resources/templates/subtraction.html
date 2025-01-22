@@ -36,6 +36,12 @@
             <div th:if="${successMessage}"><p th:text="${successMessage}" class="font alert alert-success"></p></div>
             <div th:if="${failureMessage}"><p th:text="${failureMessage}" class="font-mistake font alert alert-danger"></p></div>
 
+            <div class="unicorn-counter">
+                <div th:each="badge : ${unicorns}" class="unicorn">
+                    <img th:src="@{img/unicorn.jpg}" alt="Unicorn"/>
+                </div>
+            </div>
+
         </div>
 
         <div class="text-center">

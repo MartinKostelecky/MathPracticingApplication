@@ -33,16 +33,13 @@
             </form>
 
             <div th:if="${successMessage}"><p th:text="${successMessage}" class="font alert alert-success"></p></div>
-            <div th:if="${failureMessage}"><p th:text="${failureMessage}" class="font-mistake font alert alert-danger"></p></div>
+            <div th:if="${failureMessage}"><p th:text="${failureMessage}"
+                                              class="font-mistake font alert alert-danger"></p></div>
 
             <div class="unicorn-counter">
                 <div th:each="badge : ${unicorns}" class="unicorn">
                     <img th:src="@{img/unicorn.jpg}" alt="Unicorn"/>
                 </div>
-            </div>
-
-            <div th:if="${unicorns != null && unicorns.size() == 10}" class="font alert alert-success">
-                <p th:text="${unicornsMessage}"></p>
             </div>
 
         </div>
