@@ -4,6 +4,7 @@ import cz.martinkostelecky.mathpracticing.entity.Example;
 import cz.martinkostelecky.mathpracticing.exception.ExampleNotFoundException;
 import cz.martinkostelecky.mathpracticing.service.PracticingService;
 import cz.martinkostelecky.mathpracticing.service.UnicornBadgeService;
+import cz.martinkostelecky.mathpracticing.service.impl.UnicornBadgeServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -90,15 +91,23 @@ public class PracticingController {
     }
 
     @RequestMapping(value = "/result", method = RequestMethod.POST)
-    public String returnResult(@ModelAttribute Example example, Model model, RedirectAttributes redirectAttributes) {
+    public String returnResult(@ModelAttribute Example example, RedirectAttributes redirectAttributes) {
 
         Boolean result = practicingService.getResult(example);
-        List<UnicornBadgeService.UnicornBadge> unicornBadgeList = unicornBadgeService.getListOfColoredUnicorns(result);
+        List<UnicornBadgeServiceImpl.UnicornBadge> unicornBadgeList = unicornBadgeService.getListOfUnicornBadges(result);
+        boolean isAccomplished = unicornBadgeService.getIsAccomplished(unicornBadgeList);
+
+        if(isAccomplished) {
+            unicornBadgeService.getNewListOfUnicornBadges(unicornBadgeList);
+        }
 
         if (result) {
+            if(isAccomplished) {
+                return "redirect:/success";
+            }
             redirectAttributes.addFlashAttribute("successMessage", "JUPÍ, SPRÁVNĚ! :)");
             redirectAttributes.addFlashAttribute("unicorns", unicornBadgeList);
-            redirectAttributes.addFlashAttribute("unicornsMessage", "!!!GRATULUJI, MÁŠ VŠECH DESET JEDNOROŽCŮ!!!");
+
         } else {
             redirectAttributes.addFlashAttribute("failureMessage", "ZKUS TO ZNOVU! :(");
             redirectAttributes.addFlashAttribute("unicorns", unicornBadgeList);
@@ -119,11 +128,22 @@ public class PracticingController {
                                              RedirectAttributes redirectAttributes) {
 
         Boolean result = practicingService.getResultLogicOperators(firstNumber, secondNumber, chosenOperator);
+        List<UnicornBadgeServiceImpl.UnicornBadge> unicornBadgeList = unicornBadgeService.getListOfUnicornBadges(result);
+        boolean isAccomplished = unicornBadgeService.getIsAccomplished(unicornBadgeList);
+
+        if(isAccomplished) {
+            unicornBadgeService.getNewListOfUnicornBadges(unicornBadgeList);
+        }
 
         if (result) {
+            if(isAccomplished) {
+                return "redirect:/success";
+            }
             redirectAttributes.addFlashAttribute("successMessage", "JUPÍ, SPRÁVNĚ! :)");
+            redirectAttributes.addFlashAttribute("unicorns", unicornBadgeList);
         } else {
             redirectAttributes.addFlashAttribute("failureMessage", "ZKUS TO ZNOVU! :(");
+            redirectAttributes.addFlashAttribute("unicorns", unicornBadgeList);
         }
 
         return "redirect:/logic_operators";
@@ -132,6 +152,11 @@ public class PracticingController {
     @RequestMapping(value = "/about", method = RequestMethod.GET)
     public String aboutPage() {
         return "about";
+    }
+
+    @RequestMapping(value = "/success", method = RequestMethod.GET)
+    public String successLandingPage() {
+        return "success";
     }
 
 }

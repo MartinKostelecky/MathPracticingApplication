@@ -1,40 +1,14 @@
 package cz.martinkostelecky.mathpracticing.service;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
+import cz.martinkostelecky.mathpracticing.service.impl.UnicornBadgeServiceImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Service
-@AllArgsConstructor
-public class UnicornBadgeService {
+public interface UnicornBadgeService {
 
-    private static final Logger logger = LoggerFactory.getLogger(UnicornBadgeService.class);
-    private List<UnicornBadge> unicornBadges;
-    private static final int MAX_BADGES = 10;
+    List<UnicornBadgeServiceImpl.UnicornBadge> getListOfUnicornBadges(Boolean result);
 
-    public List<UnicornBadge> getListOfUnicornBadges(Boolean result) {
-        if (result) {
-            unicornBadges.add(new UnicornBadge());
-            logger.info("Badge was added");
-            if (unicornBadges.size() == MAX_BADGES) {
-                unicornBadges = new ArrayList<>();
-            }
-        } else {
-            unicornBadges.removeLast();
-            logger.info("Badge was removed");
-        }
-        logger.info("Number of Unicorn badges: {}", unicornBadges.size());
-        return unicornBadges;
-    }
+    boolean getIsAccomplished(List<UnicornBadgeServiceImpl.UnicornBadge> unicornBadgeList);
 
-    @NoArgsConstructor
-    public static class UnicornBadge {
-    }
-
+    void getNewListOfUnicornBadges(List<UnicornBadgeServiceImpl.UnicornBadge> unicornBadgeList);
 }
-
