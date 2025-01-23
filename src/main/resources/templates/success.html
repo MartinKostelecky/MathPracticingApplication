@@ -24,10 +24,9 @@
                 </div>
             </div>
 
-            <div class="font">
-                <p>!!!GRATULUJI, MÁŠ VŠECH DESET JEDNOROŽCŮ!!!</p>
+            <div th:if="${accomplishedMessage}"><p th:text="${accomplishedMessage}" class="font"></p>
             </div>
-            <!--TODO
+            <!--TODO back to chosen category practicing
             <div class="font">
                 <a th:href="@{/}" class="button-no-background">Začít znovu</a>
             </div>-->
@@ -40,31 +39,24 @@
     </div>
 </div>
 
-<!--TODO rainbow efect on container border only and add fanfare sound-->
+<!--PROD-->
+<!--<audio id="accomplished-melody" src="https://treninkmatematiky.online/audio/melody.wav" preload="auto" hidden></audio>-->
+
+<!--DEV-->
+<audio id="accomplished-melody" src="http://localhost:8080/audio/melody.wav" preload="auto" hidden></audio>
+
 <script th:inline="javascript">
     document.addEventListener("DOMContentLoaded", function () {
-        const successSound = document.getElementById("success-sound");
-        const failureSound = document.getElementById("failure-sound");
+        const accomplishedMelody = document.getElementById("accomplished-melody");
         const container = document.getElementById("main-container");
 
-        const successMessage = /*[[${successMessage!= null}]]*/ false;
-        const failureMessage = /*[[${failureMessage!= null}]]*/ false;
+        const accomplishedMessage = /*[[${accomplishedMessage!= null}]]*/ false;
 
-        if (successMessage) {
-            successSound.play().catch(error => console.log("Error playing sound:", error));
+        if (accomplishedMessage) {
+            accomplishedMelody.play().catch(error => console.log("Error playing sound:", error));
             container.classList.add("rainbow-border"); // Add rainbow border class
-        } else if (failureMessage) {
-            failureSound.play().catch(error => console.log("Error playing sound:", error));
-            container.classList.remove("rainbow-border"); // Remove rainbow border class on failure
-            container.classList.add("greyscale-border");
-            container.classList.add("container-mistake");
         }
 
-        // Remove the rainbow border when the button is clicked again
-        const checkButton = document.querySelector("button[type='submit']");
-        checkButton.addEventListener("click", function () {
-            container.classList.remove("rainbow-border");
-        });
     });
 </script>
 

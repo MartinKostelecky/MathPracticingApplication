@@ -97,12 +97,14 @@ public class PracticingController {
         List<UnicornBadgeServiceImpl.UnicornBadge> unicornBadgeList = unicornBadgeService.getListOfUnicornBadges(result);
         boolean isAccomplished = unicornBadgeService.getIsAccomplished(unicornBadgeList);
 
-        if(isAccomplished) {
+        if (isAccomplished) {
             unicornBadgeService.getNewListOfUnicornBadges(unicornBadgeList);
         }
 
         if (result) {
-            if(isAccomplished) {
+            if (isAccomplished) {
+                redirectAttributes.addFlashAttribute("accomplishedMessage",
+                        "!!!GRATULUJI, MÁŠ VŠECH DESET JEDNOROŽCŮ!!!");
                 return "redirect:/success";
             }
             redirectAttributes.addFlashAttribute("successMessage", "JUPÍ, SPRÁVNĚ! :)");
@@ -131,12 +133,14 @@ public class PracticingController {
         List<UnicornBadgeServiceImpl.UnicornBadge> unicornBadgeList = unicornBadgeService.getListOfUnicornBadges(result);
         boolean isAccomplished = unicornBadgeService.getIsAccomplished(unicornBadgeList);
 
-        if(isAccomplished) {
+        if (isAccomplished) {
             unicornBadgeService.getNewListOfUnicornBadges(unicornBadgeList);
         }
 
         if (result) {
-            if(isAccomplished) {
+            if (isAccomplished) {
+                redirectAttributes.addFlashAttribute("accomplishedMessage",
+                        "!!!GRATULUJI, MÁŠ VŠECH DESET JEDNOROŽCŮ!!!");
                 return "redirect:/success";
             }
             redirectAttributes.addFlashAttribute("successMessage", "JUPÍ, SPRÁVNĚ! :)");
@@ -158,5 +162,4 @@ public class PracticingController {
     public String successLandingPage() {
         return "success";
     }
-
 }
