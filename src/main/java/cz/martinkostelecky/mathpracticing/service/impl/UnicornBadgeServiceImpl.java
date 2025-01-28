@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Martin Kostelecký
+ */
 @Service
 @AllArgsConstructor
 public class UnicornBadgeServiceImpl implements UnicornBadgeService {
@@ -24,9 +27,11 @@ public class UnicornBadgeServiceImpl implements UnicornBadgeService {
             unicornBadges.add(new UnicornBadge());
             logger.info("Badge was added");
 
-        } else {
+        } else if(!unicornBadges.isEmpty()){
             unicornBadges.removeLast();
             logger.info("Badge was removed");
+        } else {
+            return new ArrayList<>();
         }
         logger.info("Number of Unicorn badges: {}", unicornBadges.size());
         return unicornBadges;

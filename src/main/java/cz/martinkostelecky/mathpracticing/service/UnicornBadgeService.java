@@ -4,6 +4,9 @@ import cz.martinkostelecky.mathpracticing.service.impl.UnicornBadgeServiceImpl;
 
 import java.util.List;
 
+/**
+ * @author Martin Kostelecký
+ */
 public interface UnicornBadgeService {
 
     List<UnicornBadgeServiceImpl.UnicornBadge> getListOfUnicornBadges(Boolean result);
