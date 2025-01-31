@@ -24,12 +24,31 @@
             <p th:text="${example.get().getExampleTitle()}" class="font"></p>
 
             <form th:action="@{/result}" method="post">
-                <div class="form-group"><input type="hidden" th:field="*{example.id}"/> <input type="hidden"
-                                                                                               th:field="*{example.category}"/>
-                    <label for="answer">=</label> <input type="text" class="form-control"
-                                                         placeholder="VÍŠ KOLIK TO JE? :)" id="answer" name="answer"
-                                                         th:field="*{example.answer}" required/></div>
+
+                <div class="form-group">
+                    <input
+                            type="hidden"
+                            th:field="*{example.id}"
+                    />
+                    <input
+                            type="hidden"
+                            th:field="*{example.category}"
+                    />
+
+                    <label for="answer">=</label>
+
+                    <input
+                            type="text"
+                            class="form-control"
+                            placeholder="VÍŠ KOLIK TO JE? :)"
+                            id="answer"
+                            name="answer"
+                            th:field="*{example.answer}" required
+                    />
+                </div>
+
                 <button type="submit">ZKONTROLOVAT</button>
+
             </form>
 
             <div th:if="${successMessage}"><p th:text="${successMessage}" class="font alert alert-success"></p></div>

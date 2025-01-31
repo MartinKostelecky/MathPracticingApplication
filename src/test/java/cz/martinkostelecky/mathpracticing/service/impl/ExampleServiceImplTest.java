@@ -111,9 +111,15 @@ class ExampleServiceImplTest {
                         "4".equals(example.getRightAnswer())
         ));
 
-        Example updatedExample = exampleRepository.findById(1L).get();
-        assertEquals(toUpdateExample.getExampleTitle(), updatedExample.getExampleTitle());
-        assertEquals(toUpdateExample.getRightAnswer(), updatedExample.getRightAnswer());
+        Optional<Example> optionalUpdatedExample = exampleRepository.findById(1L);
+
+        if (optionalUpdatedExample.isPresent()) {
+            Example updatedExample = optionalUpdatedExample.get();
+            assertEquals(toUpdateExample.getExampleTitle(), updatedExample.getExampleTitle());
+            assertEquals(toUpdateExample.getRightAnswer(), updatedExample.getRightAnswer());
+        } else {
+            throw new ExampleNotFoundException("Example not found!");
+        }
     }
 
 
