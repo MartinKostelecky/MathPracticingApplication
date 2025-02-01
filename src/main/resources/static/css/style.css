@@ -21,7 +21,7 @@ body {
     background-color: #ffc0cb;
     border-radius: 10px;
     margin-top: 1vh;
-    padding: 1vh 2vw;
+    padding: 0vh 2vw;
     text-align: center;
     height: auto;
     width: auto;
@@ -178,4 +178,13 @@ button:hover {
     /*1vw means 1% of screen width*/
     max-width: 10vw;
     border-radius: 50%;
+}
+
+.about-text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5vw;
+}
+
+.about-text td {
+    text-align: left;
 }
