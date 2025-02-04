@@ -91,10 +91,19 @@ public class PracticingController {
     }
 
     @RequestMapping(value = "/result", method = RequestMethod.POST)
-    public String returnResult(@ModelAttribute Example example, RedirectAttributes redirectAttributes) {
+    public String returnResultAdditionAndSubtraction(@ModelAttribute Example example, RedirectAttributes redirectAttributes) {
 
         Boolean result = practicingService.getResult(example);
-        if (getUnicornBadgeList(redirectAttributes, result)) return "redirect:/success";
+        List<UnicornBadgeServiceImpl.UnicornBadge> unicornBadgeList
+                = unicornBadgeService.getListOfUnicornBadgesForAdditionAndSubtraction(result, example);
+        boolean isAccomplished = unicornBadgeService.getIsAccomplished(unicornBadgeList);
+
+        if (isAccomplished) {
+            unicornBadgeService.getNewListOfUnicornBadgesForAdditionAndSubtraction(unicornBadgeList, example);
+        }
+
+        if (evaluateResult(redirectAttributes, result, unicornBadgeList, isAccomplished)) return "redirect:/success";
+
 
         if (example.getCategory().equals("Sčítání")) {
             return "redirect:/addition";
@@ -111,19 +120,21 @@ public class PracticingController {
                                              RedirectAttributes redirectAttributes) {
 
         Boolean result = practicingService.getResultLogicOperators(firstNumber, secondNumber, chosenOperator);
-        if (getUnicornBadgeList(redirectAttributes, result)) return "redirect:/success";
+        List<UnicornBadgeServiceImpl.UnicornBadge> unicornBadgeList
+                = unicornBadgeService.getListOfUnicornBadgesForLogicOperators(result);
+        boolean isAccomplished = unicornBadgeService.getIsAccomplished(unicornBadgeList);
+
+        if (isAccomplished) {
+            unicornBadgeService.getNewListOfUnicornBadgesForLogicOperators(unicornBadgeList);
+        }
+
+        if (evaluateResult(redirectAttributes, result, unicornBadgeList, isAccomplished)) return "redirect:/success";
+
 
         return "redirect:/logic_operators";
     }
 
-    private boolean getUnicornBadgeList(RedirectAttributes redirectAttributes, Boolean result) {
-        List<UnicornBadgeServiceImpl.UnicornBadge> unicornBadgeList = unicornBadgeService.getListOfUnicornBadges(result);
-        boolean isAccomplished = unicornBadgeService.getIsAccomplished(unicornBadgeList);
-
-        if (isAccomplished) {
-            unicornBadgeService.getNewListOfUnicornBadges(unicornBadgeList);
-        }
-
+    private boolean evaluateResult(RedirectAttributes redirectAttributes, Boolean result, List<UnicornBadgeServiceImpl.UnicornBadge> unicornBadgeList, boolean isAccomplished) {
         if (result) {
             if (isAccomplished) {
                 redirectAttributes.addFlashAttribute("accomplishedMessage",
@@ -132,6 +143,7 @@ public class PracticingController {
             }
             redirectAttributes.addFlashAttribute("successMessage", "JUPÍ, SPRÁVNĚ! :)");
             redirectAttributes.addFlashAttribute("unicorns", unicornBadgeList);
+
         } else {
             redirectAttributes.addFlashAttribute("failureMessage", "ZKUS TO ZNOVU! :(");
             redirectAttributes.addFlashAttribute("unicorns", unicornBadgeList);
