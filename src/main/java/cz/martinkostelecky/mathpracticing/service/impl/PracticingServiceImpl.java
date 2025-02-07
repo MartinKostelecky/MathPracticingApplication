@@ -58,7 +58,7 @@ public class PracticingServiceImpl implements PracticingService {
 
     @Override
     public int getRandomNumber() {
-        return random.nextInt(10);
+        return random.nextInt(13);
     }
 
     /**
@@ -81,8 +81,14 @@ public class PracticingServiceImpl implements PracticingService {
         return example.getIsCorrect();
     }
 
+
     /**
+     * evaluates answer in logic operators practicing
      *
+     * @param firstNumber
+     * @param secondNumber
+     * @param chosenOperator
+     * @return whether answer was correct
      */
     @Override
     public Boolean getResultLogicOperators(int firstNumber, int secondNumber, String chosenOperator) {

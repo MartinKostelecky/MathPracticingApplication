@@ -134,7 +134,8 @@ public class PracticingController {
         return "redirect:/logic_operators";
     }
 
-    private boolean evaluateResult(RedirectAttributes redirectAttributes, Boolean result, List<UnicornBadgeServiceImpl.UnicornBadge> unicornBadgeList, boolean isAccomplished) {
+    private boolean evaluateResult(RedirectAttributes redirectAttributes, Boolean result,
+                                   List<UnicornBadgeServiceImpl.UnicornBadge> unicornBadgeList, boolean isAccomplished) {
         if (result) {
             if (isAccomplished) {
                 redirectAttributes.addFlashAttribute("accomplishedMessage",
