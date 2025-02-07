@@ -36,7 +36,7 @@ public class SecurityConfig {
 
         httpSecurity
                 //.exceptionHandling(httpSecurityExceptionHandlingConfigurer ->
-                        //httpSecurityExceptionHandlingConfigurer.authenticationEntryPoint(unauthorizedHandler))
+                //httpSecurityExceptionHandlingConfigurer.authenticationEntryPoint(unauthorizedHandler))
                 .authorizeHttpRequests(authorize ->
                         authorize.requestMatchers("/login", "/authenticate", "/", "/addition",
                                         "/result", "/subtraction", "/about", "/logic_operators", "/result-logic",
@@ -46,10 +46,13 @@ public class SecurityConfig {
                                 .authenticated())
 
                 .sessionManagement(sessionManagement ->
-                        sessionManagement.invalidSessionUrl("/login?expired")
-                                .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+                        sessionManagement
+                                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                                .sessionFixation().migrateSession()
+                                .invalidSessionUrl("/login?expired")
                                 .maximumSessions(2)
                                 .maxSessionsPreventsLogin(true))
+
                 .formLogin(login -> login.loginPage("/login"))
                 .logout(logout -> logout.deleteCookies("JSESSIONID"));
 

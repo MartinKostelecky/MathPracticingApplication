@@ -6,7 +6,7 @@ spring:
   #    password: ${POSTGRES_PASSWORD}
   #    driverClassName: org.postgresql.Driver
 
-# DEV
+  # DEV
   datasource:
     url: jdbc:postgresql://localhost:5433/mathexamplesdb
     username: postgres
@@ -23,6 +23,9 @@ spring:
         format_sql: true
 
 server:
+  servlet:
+    session:
+      timeout: 30m
   error:
     include-message: always
     include-binding-errors: always

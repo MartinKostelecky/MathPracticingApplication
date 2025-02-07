@@ -36,30 +36,40 @@ body {
 
 .font {
     font-family: 'Honk', sans-serif;
-    font-size: 5vw;
+    font-size: 4vw;
     margin-top: 1vh;
     margin-bottom: 1vh;
 }
 
 .font-smaller {
     font-family: 'Honk', sans-serif;
-    font-size: 4vw;
+    font-size: 3vw;
 }
 
 .font-smallest {
     font-family: 'Honk', sans-serif;
-    font-size: 3vw;
+    font-size: 2vw;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
 }
 
 .font-mistake {
     font-family: 'Honk', sans-serif;
-    font-size: 4vw;
+    font-size: 3vw;
+    filter: grayscale(100%);
+}
+
+.font-mistake-smallest {
+    font-family: 'Honk', sans-serif;
+    font-size: 2vw;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
     filter: grayscale(100%);
 }
 
 label {
     font-family: 'Honk', sans-serif;
-    font-size: 4vw;
+    font-size: 3vw;
 }
 
 input[type="text"] {
@@ -72,7 +82,7 @@ input[type="text"] {
 button {
     background-color: #ffc0cb;
     font-family: 'Honk', sans-serif;
-    font-size: 4vw;
+    font-size: 3vw;
     border: none;
     margin: 1vh;
     padding: 10px 20px;
@@ -88,6 +98,7 @@ button:hover {
             #00FFD5, #002BFF, #FF00C8, #FF0000
     );
     transition: linear 1s;
+    cursor: pointer;
 }
 
 .button-no-background {
